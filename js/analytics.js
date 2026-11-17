@@ -139,15 +139,236 @@ function copyAnalyticsReport() {
   }
 }
 
+function removeVietnameseTones(str) {
+  return String(str || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D')
+    .replace(/[^a-zA-Z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
+}
+
+function buildUserExportFilename(customName, prefix) {
+  const rawName = customName || (userProgress && userProgress.profile && userProgress.profile.name) || 'nguoi-hoc';
+  const slugName = removeVietnameseTones(rawName) || 'nguoi-hoc';
+  const now = new Date();
+  const pad2 = n => String(n).padStart(2, '0');
+  const timeStamp = pad2(now.getHours()) + 'h' + pad2(now.getMinutes()) + '-' + pad2(now.getDate()) + '-' + pad2(now.getMonth() + 1);
+  const pre = prefix ? (removeVietnameseTones(prefix) + '-') : '';
+  return pre + slugName + '-' + timeStamp + '.json';
+}
+
+function getActiveStudyCardQuestion() {
+  const cards = Array.from(document.querySelectorAll('#studyQuestionsContainer article[data-q-id]'));
+  if (cards.length === 0) return null;
+  const viewportMid = window.innerHeight * 0.35;
+  let bestCard = cards[0];
+  let bestDist = Infinity;
+  for (const c of cards) {
+    const rect = c.getBoundingClientRect();
+    if (rect.bottom < 60) continue;
+    const dist = Math.abs(rect.top - viewportMid);
+    if (dist < bestDist) {
+      bestDist = dist;
+      bestCard = c;
+    }
+  }
+  const qId = bestCard ? bestCard.getAttribute('data-q-id') : null;
+  return qId ? { q: QUESTIONS_BANK.find(x => x.id === qId), card: bestCard } : null;
+}
+
+function moveStudyCardFocus(delta) {
+  const cards = Array.from(document.querySelectorAll('#studyQuestionsContainer article[data-q-id]'));
+  if (cards.length === 0) return;
+  const cur = getActiveStudyCardQuestion();
+  const idx = cur && cur.card ? cards.indexOf(cur.card) : 0;
+  const nextIdx = Math.max(0, Math.min(cards.length - 1, idx + delta));
+  const target = cards[nextIdx];
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    target.classList.add('ring-2', 'ring-teal-500');
+    setTimeout(() => target.classList.remove('ring-2', 'ring-teal-500'), 900);
+  }
+}
+
+function openKeyboardShortcutsHelpModal() {
+  const modal = document.getElementById('customDataModal');
+  const titleEl = document.getElementById('customDataModalTitle');
+  const bodyEl = document.getElementById('customDataModalBody');
+  const footerEl = document.getElementById('customDataModalFooter');
+  if (!modal || !titleEl || !bodyEl || !footerEl) return;
+
+  titleEl.textContent = '⌨️ Bảng Phím Tắt Nhanh (Phiên bản 2.2.0)';
+  bodyEl.innerHTML = '<div class="space-y-4 text-xs">' +
+    '<div class="p-3 rounded-xl bg-teal-50 border border-teal-200 text-teal-950">' +
+      'Sử dụng phím tắt trên bàn phím máy tính giúp tăng tốc độ làm đề, lật Flashcard và tra cứu câu hỏi. Nhấn <kbd class="px-1.5 py-0.5 rounded bg-white border border-teal-300 font-mono font-bold">?</kbd> bất kỳ lúc nào để mở bảng này.' +
+    '</div>' +
+    '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' +
+      '<div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">' +
+        '<div class="font-extrabold text-teal-900 text-sm">📚 Chế độ Ôn tập &amp; Giải đáp</div>' +
+        '<ul class="space-y-1.5 text-slate-700">' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">1–4</kbd> hoặc <kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">A–D</kbd>: Chọn đáp án cho câu đang xem</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">J</kbd> / <kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">K</kbd> hoặc <kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">→</kbd> / <kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">←</kbd>: Chuyển câu tiếp / trước</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">H</kbd>: Bật/tắt gợi ý lâm sàng câu đang xem</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">E</kbd>: Bật/tắt giải thích chi tiết câu đang xem</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">B</kbd>: Đánh dấu ⭐ lưu câu hỏi đang xem</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">/</kbd>: Nhảy nhanh vào ô tìm kiếm câu hỏi</li>' +
+        '</ul>' +
+      '</div>' +
+      '<div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">' +
+        '<div class="font-extrabold text-teal-900 text-sm">⏱️ Chế độ Thi thử Tính giờ</div>' +
+        '<ul class="space-y-1.5 text-slate-700">' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">1–4</kbd> hoặc <kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">A–D</kbd>: Chọn phương án trả lời</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">→</kbd> / <kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">Enter</kbd> và <kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">←</kbd>: Câu tiếp theo / Câu trước</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">F</kbd>: Đặt cờ 🚩 xem lại câu hiện tại</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">H</kbd>: Hiện/ẩn gợi ý lâm sàng (nếu bật)</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">P</kbd>: Tạm dừng / Tiếp tục đồng hồ thi</li>' +
+        '</ul>' +
+      '</div>' +
+      '<div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">' +
+        '<div class="font-extrabold text-teal-900 text-sm">🗂️ Chế độ Flashcard 3D</div>' +
+        '<ul class="space-y-1.5 text-slate-700">' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">Space</kbd>: Lật thẻ Flashcard 3D</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">←</kbd> / <kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">→</kbd>: Thẻ trước / Thẻ tiếp theo</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">1</kbd> / <kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">2</kbd> / <kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">3</kbd>: Đánh giá Khó / Vừa / Dễ</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">H</kbd>: Xem gợi ý • <kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">R</kbd>: Trộn ngẫu nhiên thẻ</li>' +
+        '</ul>' +
+      '</div>' +
+      '<div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">' +
+        '<div class="font-extrabold text-teal-900 text-sm">🌐 Điều hướng Toàn cục</div>' +
+        '<ul class="space-y-1.5 text-slate-700">' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">Alt + 1..7</kbd>: Chuyển nhanh giữa 7 Tab chức năng</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">M</kbd>: Mở Cổng chọn 16 Học phần (Y1–Y6)</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">?</kbd>: Mở bảng hướng dẫn phím tắt này</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">Esc</kbd>: Đóng hộp thoại (Modal) đang mở</li>' +
+        '</ul>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+
+  footerEl.innerHTML = '<button type="button" onclick="closeCustomDataModal()" class="px-4 py-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold">Đã hiểu</button>';
+  modal.classList.remove('hidden');
+}
+
 document.addEventListener('keydown', function (e) {
-  if (currentTab !== 'flashcard') return;
-  if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA')) return;
-  if (e.code === 'Space') { e.preventDefault(); flipFlashcard(); }
-  else if (e.code === 'ArrowRight') { e.preventDefault(); moveFlashcard(1); }
-  else if (e.code === 'ArrowLeft') { e.preventDefault(); moveFlashcard(-1); }
-  else if (e.key === '1') rateCurrentFlashcard('hard');
-  else if (e.key === '2') rateCurrentFlashcard('medium');
-  else if (e.key === '3') rateCurrentFlashcard('easy');
+  if (e.key === 'Escape') {
+    if (typeof closeCustomDataModal === 'function') closeCustomDataModal();
+    if (typeof closeAppModal === 'function') closeAppModal();
+    if (typeof closeCourseHubModal === 'function') closeCourseHubModal();
+    return;
+  }
+
+  const tag = (e.target && e.target.tagName) ? e.target.tagName.toUpperCase() : '';
+  const isTyping = tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable);
+  if (isTyping) return;
+
+  // Global Alt + 1..7 tab switching
+  if (e.altKey && !e.ctrlKey && !e.metaKey) {
+    const tabs = ['study', 'exam', 'flashcard', 'analytics', 'user', 'manage', 'guide'];
+    const num = parseInt(e.key, 10);
+    if (num >= 1 && num <= tabs.length) {
+      e.preventDefault();
+      switchTab(tabs[num - 1]);
+      return;
+    }
+  }
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+  if (e.key === '?') {
+    e.preventDefault();
+    openKeyboardShortcutsHelpModal();
+    return;
+  }
+  if (e.key === 'm' || e.key === 'M') {
+    e.preventDefault();
+    openCourseHubModal('all');
+    return;
+  }
+
+  // Flashcard shortcuts
+  if (currentTab === 'flashcard') {
+    if (e.code === 'Space') { e.preventDefault(); flipFlashcard(); }
+    else if (e.code === 'ArrowRight') { e.preventDefault(); moveFlashcard(1); }
+    else if (e.code === 'ArrowLeft') { e.preventDefault(); moveFlashcard(-1); }
+    else if (e.key === '1') rateCurrentFlashcard('hard');
+    else if (e.key === '2') rateCurrentFlashcard('medium');
+    else if (e.key === '3') rateCurrentFlashcard('easy');
+    else if (e.key === 'h' || e.key === 'H') { e.preventDefault(); toggleFlashcardHint(); }
+    else if (e.key === 'r' || e.key === 'R') { e.preventDefault(); shuffleFlashcards(); }
+    return;
+  }
+
+  // Exam shortcuts
+  if (currentTab === 'exam' && examState && examState.active && !examState.submitted) {
+    const keyUpper = (e.key || '').toUpperCase();
+    const optMap = { '1': 0, '2': 1, '3': 2, '4': 3, '5': 4, 'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4 };
+    if (optMap.hasOwnProperty(keyUpper)) {
+      const q = examState.questions[examState.currentIndex];
+      if (q && Array.isArray(q.options) && optMap[keyUpper] < q.options.length) {
+        e.preventDefault();
+        selectExamOption(optMap[keyUpper]);
+      }
+    } else if (e.code === 'ArrowRight' || e.code === 'Enter') {
+      e.preventDefault();
+      navigateExamQuestion(1);
+    } else if (e.code === 'ArrowLeft') {
+      e.preventDefault();
+      navigateExamQuestion(-1);
+    } else if (keyUpper === 'F') {
+      e.preventDefault();
+      toggleExamFlagCurrent();
+    } else if (keyUpper === 'H') {
+      e.preventDefault();
+      toggleExamQuestionHint();
+    } else if (keyUpper === 'P') {
+      e.preventDefault();
+      togglePauseExam();
+    }
+    return;
+  }
+
+  // Study mode shortcuts
+  if (currentTab === 'study') {
+    if (e.key === '/') {
+      const searchInp = document.getElementById('studySearchInput');
+      if (searchInp) {
+        e.preventDefault();
+        searchInp.focus();
+        searchInp.select();
+      }
+      return;
+    }
+    const keyUpper = (e.key || '').toUpperCase();
+    if (keyUpper === 'J' || e.code === 'ArrowRight') {
+      e.preventDefault();
+      moveStudyCardFocus(1);
+      return;
+    }
+    if (keyUpper === 'K' || e.code === 'ArrowLeft') {
+      e.preventDefault();
+      moveStudyCardFocus(-1);
+      return;
+    }
+    const active = getActiveStudyCardQuestion();
+    if (!active || !active.q) return;
+    const q = active.q;
+    const optMap = { '1': 0, '2': 1, '3': 2, '4': 3, 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+    if (optMap.hasOwnProperty(keyUpper) && Array.isArray(q.options) && optMap[keyUpper] < q.options.length) {
+      e.preventDefault();
+      selectStudyAnswer(q.id, optMap[keyUpper]);
+    } else if (keyUpper === 'H') {
+      e.preventDefault();
+      toggleStudyHint(q.id);
+    } else if (keyUpper === 'E') {
+      e.preventDefault();
+      toggleStudyExp(q.id);
+    } else if (keyUpper === 'B') {
+      e.preventDefault();
+      toggleBookmark(q.id);
+    }
+  }
 });
 
 
@@ -181,8 +402,7 @@ function exportSingleSession(sessionIdx) {
     profile: userProgress.profile,
     session: s
   };
-  const safeDate = String(s.date || '').replace(/[^0-9]/g, '').slice(0, 12) || String(sessionIdx + 1);
-  downloadJsonObject(payload, 'phien_hoc_truyen_nhiem_' + safeDate + '.json');
+  downloadJsonObject(payload, buildUserExportFilename(s.learnerName || (userProgress.profile && userProgress.profile.name)));
 }
 
 function exportAllSessionsOnly() {
@@ -196,7 +416,7 @@ function exportAllSessionsOnly() {
     profile: userProgress.profile,
     sessions: userProgress.sessions
   };
-  downloadJsonObject(payload, 'lich_su_cac_phien_hoc_truyen_nhiem.json');
+  downloadJsonObject(payload, buildUserExportFilename(userProgress.profile && userProgress.profile.name));
 }
 
 function exportAllLearningData() {
@@ -205,7 +425,7 @@ function exportAllLearningData() {
     exportedAt: new Date().toLocaleString('vi-VN'),
     data: userProgress
   };
-  downloadJsonObject(payload, 'ho_so_on_tap_truyen_nhiem_full.json');
+  downloadJsonObject(payload, buildUserExportFilename(userProgress.profile && userProgress.profile.name));
 }
 
 function triggerImportSessionFile() {

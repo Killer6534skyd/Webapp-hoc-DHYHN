@@ -431,12 +431,12 @@ function confirmCreateNewProfile() {
 function exportSingleProfileById(profileId) {
   const item = profilesRegistry.profiles && profilesRegistry.profiles[profileId];
   if (!item) return;
-  const pName = (item.data && item.data.profile && item.data.profile.name) ? item.data.profile.name.replace(/\s+/g, '_') : profileId;
+  const pName = (item.data && item.data.profile && item.data.profile.name) ? item.data.profile.name : profileId;
   downloadJsonObject({
     format: 'HMU_INFECTIOUS_DISEASE_FULL_BACKUP_V1',
     exportedAt: new Date().toLocaleString('vi-VN'),
     data: item.data
-  }, 'profile_' + pName + '.json');
+  }, buildUserExportFilename(pName));
 }
 
 function deleteLearnerProfileById(profileId) {
@@ -893,14 +893,14 @@ async function syncWithGoogleDriveRestApi(direction) {
 }
 
 function exportGoogleDriveSyncFile() {
-  const emailSlug = (userProgress.cloudSync && userProgress.cloudSync.email)
-    ? userProgress.cloudSync.email.split('@')[0].replace(/[^a-zA-Z0-9_-]/g, '_')
-    : 'hmu_user';
+  const uName = (userProgress.profile && userProgress.profile.name)
+    || (userProgress.cloudSync && userProgress.cloudSync.email && userProgress.cloudSync.email.split('@')[0])
+    || 'nguoi-hoc';
   downloadJsonObject({
     format: 'HMU_INFECTIOUS_DISEASE_FULL_BACKUP_V1',
     exportedAt: new Date().toLocaleString('vi-VN'),
     data: userProgress
-  }, 'google_drive_sync_' + emailSlug + '.json');
+  }, buildUserExportFilename(uName));
 }
 
 function refreshOAuthModalSyncTokenBox() {

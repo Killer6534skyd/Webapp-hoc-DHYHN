@@ -15,6 +15,41 @@ try {
   if (savedCourseId && COURSE_BANKS_DATA[savedCourseId]) activeCourseId = savedCourseId;
 } catch (e) {}
 
+const COURSE_SCRIPT_MANIFEST = {
+  s22_ntmd: 'data/courses/s22_ntmd.js',
+  s310_truyen_nhiem: 'data/courses/s310_truyen_nhiem.js',
+  s37_s38_ung_thu: 'data/courses/s37_s38_ung_thu.js',
+  nckh3_y5: 'data/courses/nckh3_y5.js',
+  s36_gmhs_hscc: 'data/courses/s36_gmhs_hscc.js',
+  s38_tam_than: 'data/courses/s38_tam_than.js',
+  s39_yhct: 'data/courses/s39_yhct.js',
+  s311_csskbd: 'data/courses/s311_csskbd.js',
+  s312_1_phcn: 'data/courses/s312_1_phcn.js',
+  s312_2_lao: 'data/courses/s312_2_lao.js',
+  s312_3_di_ung: 'data/courses/s312_3_di_ung.js',
+  s312_4_da_lieu: 'data/courses/s312_4_da_lieu.js',
+  s312_5_mat: 'data/courses/s312_5_mat.js',
+  s312_6_tmh: 'data/courses/s312_6_tmh.js',
+  s312_7_rhm: 'data/courses/s312_7_rhm.js',
+  s312_8_ptthtm: 'data/courses/s312_8_ptthtm.js'
+};
+
+function ensureCourseScriptLoaded(courseId) {
+  if (COURSE_BANKS_DATA[courseId]) return Promise.resolve(COURSE_BANKS_DATA[courseId]);
+  const src = COURSE_SCRIPT_MANIFEST[courseId];
+  if (!src || typeof document === 'undefined' || !document.createElement) {
+    return Promise.resolve(null);
+  }
+  return new Promise(resolve => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.async = true;
+    s.onload = () => resolve(COURSE_BANKS_DATA[courseId] || null);
+    s.onerror = () => resolve(null);
+    document.head.appendChild(s);
+  });
+}
+
 
 function cloneQuestionFast(q) {
   if (!q || typeof q !== 'object') return q;

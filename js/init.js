@@ -5,5 +5,8 @@ window.addEventListener('DOMContentLoaded', function () {
   if (!hideOnStart) {
     openCourseHubModal('all');
   }
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  }
 });
 

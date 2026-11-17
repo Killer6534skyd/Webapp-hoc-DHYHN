@@ -1,6 +1,6 @@
 {
   "name": "webapp-hoc-dhyhn",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Hệ Thống Ôn Tập & Thi Thử Y Khoa Đa Học Phần ĐHYHN (Y1–Y6) — 16 Học Phần (2.627 Câu Hỏi)",
   "private": true,
   "scripts": {

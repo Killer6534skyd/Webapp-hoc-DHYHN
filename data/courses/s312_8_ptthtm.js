@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s312_8_ptthtm'] = {
   "icon": "✨",
   "shortName": "PT Tạo hình Thẩm mỹ (S3.12.8)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Phẫu Thuật Tạo Hình Thẩm Mỹ (S3.12.8 - Năm Y5)",
-  "subtitle": "Giáo trình Phẫu thuật Tạo hình - Bộ môn Phẫu thuật Tạo hình Đại học Y Hà Nội & Hướng dẫn Quy trình Kỹ thuật Bộ Y tế (93 Câu & 6 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.1.1)",
+  "subtitle": "Giáo trình Phẫu thuật Tạo hình - Bộ môn Phẫu thuật Tạo hình Đại học Y Hà Nội & Hướng dẫn Quy trình Kỹ thuật Bộ Y tế (93 Câu & 6 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.0)",
   "storageNamespace": "hmu_s312_8_ptthtm_v210",
   "defaultExamCount": 40,
   "defaultExamMinutes": 30,

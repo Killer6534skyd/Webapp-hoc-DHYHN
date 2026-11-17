@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s312_6_tmh'] = {
   "icon": "👂",
   "shortName": "Tai Mũi Họng (S3.12.6)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Tai Mũi Họng (S3.12.6 - Năm Y5)",
-  "subtitle": "Giáo trình Tai Mũi Họng - Đại học Y Hà Nội & Hướng dẫn Chẩn đoán, Điều trị các Bệnh Tai Mũi Họng Bộ Y tế (QĐ 5643/QĐ-BYT) (131 Câu & 31 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.1.1)",
+  "subtitle": "Giáo trình Tai Mũi Họng - Đại học Y Hà Nội & Hướng dẫn Chẩn đoán, Điều trị các Bệnh Tai Mũi Họng Bộ Y tế (QĐ 5643/QĐ-BYT) (131 Câu & 31 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.0)",
   "storageNamespace": "hmu_s312_6_tmh_v210",
   "defaultExamCount": 40,
   "defaultExamMinutes": 30,

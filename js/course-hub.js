@@ -206,7 +206,14 @@ function resetUserProgressMemoryForCourseSwitch() {
 }
 
 function switchActiveCourse(courseId, closeHubAfter) {
-  if (!COURSE_BANKS_DATA[courseId]) return;
+  if (!COURSE_BANKS_DATA[courseId]) {
+    if (typeof ensureCourseScriptLoaded === 'function') {
+      ensureCourseScriptLoaded(courseId).then(loaded => {
+        if (loaded) switchActiveCourse(courseId, closeHubAfter);
+      });
+    }
+    return;
+  }
   if (examState && examState.timerId) {
     clearInterval(examState.timerId);
     examState.timerId = null;

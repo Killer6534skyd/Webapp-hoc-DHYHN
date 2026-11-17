@@ -1090,7 +1090,8 @@ function revertEditedQuestion(qId) {
 }
 
 function exportQuestionsBankJson() {
-  downloadJsonObject(QUESTIONS_BANK, 'ngan_hang_cau_hoi_truyen_nhiem_' + QUESTIONS_BANK.length + '_cau.json');
+  const courseName = (activeCourseObj && activeCourseObj.shortName) ? activeCourseObj.shortName : 'ngan-hang-cau-hoi';
+  downloadJsonObject(QUESTIONS_BANK, buildUserExportFilename(courseName + '-' + QUESTIONS_BANK.length + '-cau'));
 }
 
 function openBulkQuestionImportModal() {

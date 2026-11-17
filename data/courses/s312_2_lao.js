@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s312_2_lao'] = {
   "icon": "🫁",
   "shortName": "Bệnh học Lao (S3.12.2)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Bệnh Học Lao (S3.12.2 - Năm Y5)",
-  "subtitle": "Giáo trình Bệnh học Lao - Đại học Y Hà Nội & Hướng dẫn Chẩn đoán, Điều trị và Dự phòng Bệnh Lao Bộ Y tế (QĐ 162/QĐ-BYT 2024 & QĐ 1314/QĐ-BYT) (112 Câu & 25 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.1.1)",
+  "subtitle": "Giáo trình Bệnh học Lao - Đại học Y Hà Nội & Hướng dẫn Chẩn đoán, Điều trị và Dự phòng Bệnh Lao Bộ Y tế (QĐ 162/QĐ-BYT 2024 & QĐ 1314/QĐ-BYT) (112 Câu & 25 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.0)",
   "storageNamespace": "hmu_s312_2_lao_v210",
   "defaultExamCount": 40,
   "defaultExamMinutes": 30,
