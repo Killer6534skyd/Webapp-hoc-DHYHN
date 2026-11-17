@@ -1,0 +1,97 @@
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background-color: #f8fafc; color: #0f172a; }
+.perspective-1000 { perspective: 1200px; }
+.transform-style-3d { transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
+.backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.rotate-y-180 { transform: rotateY(180deg); }
+.flipped { transform: rotateY(180deg); }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+.doc-comment-mark {
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.doc-comment-mark.hl-yellow {
+  background-color: #fef08a;
+  border-bottom: 2px solid #eab308;
+  color: #713f12;
+}
+.doc-comment-mark.hl-green {
+  background-color: #bbf7d0;
+  border-bottom: 2px solid #16a34a;
+  color: #14532d;
+}
+.doc-comment-mark.hl-pink {
+  background-color: #fecdd3;
+  border-bottom: 2px solid #e11d48;
+  color: #881337;
+}
+.doc-comment-mark.hl-purple {
+  background-color: #e9d5ff;
+  border-bottom: 2px solid #9333ea;
+  color: #581c87;
+}
+.doc-comment-mark:hover, .doc-comment-mark.active-mark {
+  filter: brightness(0.93);
+  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.45);
+}
+.doc-comment-badge-sup {
+  font-size: 10px;
+  margin-left: 2px;
+  vertical-align: super;
+  opacity: 0.9;
+  user-select: none;
+}
+.doc-hl-only {
+  padding: 1px 2px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.doc-hl-only.hl-yellow { background-color: #fef08a; color: #0f172a; }
+.doc-hl-only.hl-green  { background-color: #bbf7d0; color: #0f172a; }
+.doc-hl-only.hl-pink   { background-color: #fecdd3; color: #0f172a; }
+.doc-hl-only.hl-purple { background-color: #e9d5ff; color: #0f172a; }
+.doc-hl-only:hover {
+  filter: brightness(0.95);
+  outline: 1px dashed #64748b;
+}
+.doc-overlap-mark {
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  outline: 2px dashed #4338ca;
+  outline-offset: 1px;
+  box-shadow: inset 0 -3px 0 rgba(225, 29, 72, 0.75), 0 1px 4px rgba(67, 56, 202, 0.25);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.doc-overlap-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  font-size: 9px;
+  line-height: 1;
+  padding: 1px 4px;
+  margin-left: 3px;
+  border-radius: 9999px;
+  background-color: #312e81;
+  color: #ffffff;
+  vertical-align: middle;
+  user-select: none;
+}
+.annotatable-region::selection, .annotatable-region *::selection {
+  background-color: #fde047;
+  color: #0f172a;
+}

@@ -1,0 +1,13 @@
+{
+  "name": "webapp-hoc-dhyhn",
+  "version": "2.1.1",
+  "description": "Hệ Thống Ôn Tập & Thi Thử Y Khoa Đa Học Phần ĐHYHN (Y1–Y6) — 16 Học Phần (2.627 Câu Hỏi)",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8080",
+    "check": "node scripts/validate-project.js",
+    "test": "node scripts/validate-project.js",
+    "build:single": "python3 scripts/build-single-html.py"
+  }
+}
