@@ -1,6 +1,6 @@
 # Hệ Thống Ôn Tập Y Khoa Đa Học Phần ĐHYHN (Y1–Y6)
 
-Project này được tách và chuẩn hóa từ file đơn lẻ `2.1.1.html` (~7.5 MB) thành cấu trúc thư mục mô-đun để dễ quản lý, chỉnh sửa câu hỏi từng môn, kiểm tra lỗi tự động và triển khai lên GitHub Pages / Vercel (hiện tại là **Phiên bản 2.2.0** — xem chi tiết tại [CHANGELOG.md](CHANGELOG.md)).
+Project này được tách và chuẩn hóa từ file đơn lẻ `2.1.1.html` (~7.5 MB) thành cấu trúc thư mục mô-đun để dễ quản lý, chỉnh sửa câu hỏi từng môn, kiểm tra lỗi tự động và triển khai lên GitHub Pages / Vercel (hiện tại là **Phiên bản 2.2.1** — xem chi tiết tại [CHANGELOG.md](CHANGELOG.md)).
 
 Dùng thử tại:
 - **Vercel:** https://tewnpuck.vercel.app/

@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s312_4_da_lieu'] = {
   "icon": "🧴",
   "shortName": "Bệnh học Da liễu (S3.12.4)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Bệnh Học Da Liễu (S3.12.4 - Năm Y5)",
-  "subtitle": "Giáo trình Bệnh học Da liễu - Đại học Y Hà Nội & Hướng dẫn Chẩn đoán, Điều trị các Bệnh Da liễu Bộ Y tế (QĐ 75/QĐ-BYT) (151 Câu & 23 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.0)",
+  "subtitle": "Giáo trình Bệnh học Da liễu - Đại học Y Hà Nội & Hướng dẫn Chẩn đoán, Điều trị các Bệnh Da liễu Bộ Y tế (QĐ 75/QĐ-BYT) (151 Câu & 23 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.1)",
   "storageNamespace": "hmu_s312_4_da_lieu_v210",
   "defaultExamCount": 40,
   "defaultExamMinutes": 30,

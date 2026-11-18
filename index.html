@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hệ Thống Ôn Tập Y Khoa Đa Học Phần ĐHYHN (Y1–Y6) — 16 Học Phần (2627 Câu Hỏi) | Phiên bản 2.2.0 — Copyright © 2026 CorruptedP</title>
+  <title>Hệ Thống Ôn Tập Y Khoa Đa Học Phần ĐHYHN (Y1–Y6) — 16 Học Phần (2627 Câu Hỏi) | Phiên bản 2.2.1 — Copyright © 2026 CorruptedP</title>
   <meta name="description" content="Ôn tập các Module YHN - By CrptedP" />
   <meta name="theme-color" content="#065f46" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,7 +34,7 @@
           <div class="flex items-center gap-2 flex-wrap">
             <h1 id="appHeaderTitleText" class="text-base md:text-lg font-bold tracking-tight">Khung Hệ Thống Ôn Tập &amp; Thi Thử Đa Môn Học</h1>
             <span id="headerTotalQuestionsBadge" class="text-xs px-2 py-0.5 rounded-full bg-emerald-400/20 text-emerald-200 border border-emerald-300/30 font-medium">0 Câu Hỏi (Khung Trống)</span>
-            <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-400/25 text-amber-200 border border-amber-300/40 font-extrabold tracking-wide" title="Copyright © 2026 CorruptedP. All rights reserved.">Phiên bản 2.2.0 • © 2026 CorruptedP</span>
+            <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-400/25 text-amber-200 border border-amber-300/40 font-extrabold tracking-wide" title="Copyright © 2026 CorruptedP. All rights reserved.">Phiên bản 2.2.1 • © 2026 CorruptedP</span>
           </div>
           <p id="appHeaderSubtitleText" class="text-xs text-teal-100/90">Bản khung hệ thống (Template) dùng cho mọi môn học • Nhấn &quot;📖 Hướng dẫn &amp; Prompt AI&quot; hoặc &quot;⚙️ Đổi Môn Học&quot;</p>
         </div>
@@ -48,7 +48,7 @@
         <button id="tabBtn-manage" onclick="switchTab('manage')" class="tab-btn px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition flex items-center gap-1.5 whitespace-nowrap bg-white/10 text-white hover:bg-white/20"><span>✏️</span><span>Quản lý Câu hỏi</span></button>
         <button id="tabBtn-guide" onclick="switchTab('guide')" class="tab-btn px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition flex items-center gap-1.5 whitespace-nowrap bg-amber-400/20 text-amber-200 border border-amber-300/40 hover:bg-amber-400/30"><span>📖</span><span>Hướng dẫn &amp; Prompt AI</span></button>
         <button type="button" onclick="openKeyboardShortcutsHelpModal()" class="px-2.5 py-2 rounded-lg text-xs font-bold bg-white/10 hover:bg-white/20 text-teal-100 border border-white/20 whitespace-nowrap flex items-center gap-1 transition" title="Xem bảng Phím tắt nhanh (Nhấn phím ?)"><span>⌨️</span><span class="hidden xl:inline">Phím tắt</span></button>
-        <button type="button" onclick="openCourseHubModal('all')" class="px-3 py-2 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 hover:bg-amber-300 whitespace-nowrap flex items-center gap-1 shadow-xs" title="Chọn Năm học (Y1-Y6) & Chuyển đổi Học phần Ôn luyện"><span>🎓</span><span>Chọn Học Phần (Y1–Y6)</span></button>
+        <button type="button" onclick="openCourseHubModal()" class="px-3 py-2 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 hover:bg-amber-300 whitespace-nowrap flex items-center gap-1 shadow-xs" title="Chọn Năm học (Y1-Y6) & Chuyển đổi Học phần Ôn luyện"><span>🎓</span><span>Chọn Học Phần (Y1–Y6)</span></button>
       </nav>
     </div>
   </header>
@@ -59,7 +59,7 @@
         <span class="text-[11px] font-extrabold uppercase tracking-wider text-teal-300 mr-1 flex items-center gap-1">
           <span>🎓 Phân hệ Năm học:</span>
         </span>
-        <button type="button" onclick="openCourseHubModal('all')" id="topYearBtn-all" class="year-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white/10 hover:bg-white/20 text-teal-100">Tất cả (Y1–Y6)</button>
+        <button type="button" onclick="openCourseHubModal()" id="topYearBtn-all" class="year-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white/10 hover:bg-white/20 text-teal-100">Tất cả (Y1–Y6)</button>
         <button type="button" onclick="openCourseHubModal('Y1')" id="topYearBtn-Y1" class="year-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white/5 hover:bg-white/15 text-slate-300">Y1</button>
         <button type="button" onclick="openCourseHubModal('Y2')" id="topYearBtn-Y2" class="year-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold transition bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 hover:bg-emerald-500/30">Y2 (S2.2 NT-MD)</button>
         <button type="button" onclick="openCourseHubModal('Y3')" id="topYearBtn-Y3" class="year-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white/5 hover:bg-white/15 text-slate-300">Y3</button>
@@ -117,7 +117,7 @@
         <button type="button" id="quickCourseBtn-s312_8_ptthtm" onclick="switchActiveCourse('s312_8_ptthtm')" class="px-2.5 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-slate-200 border border-white/15">
           <span>✨</span><span>[Y5] PT Tạo hình Thẩm mỹ (S3.12.8) (93 câu)</span>
         </button>
-        <button type="button" onclick="openCourseHubModal('all')" class="px-3 py-1 rounded-lg text-xs font-extrabold bg-amber-400 hover:bg-amber-300 text-slate-950 shadow-xs transition flex items-center gap-1">
+        <button type="button" onclick="openCourseHubModal()" class="px-3 py-1 rounded-lg text-xs font-extrabold bg-amber-400 hover:bg-amber-300 text-slate-950 shadow-xs transition flex items-center gap-1">
           <span>📚</span><span>Cổng 16 Học Phần (Y1–Y6)</span>
         </button>
       </div>
@@ -1236,7 +1236,7 @@ const DEFAULT_SUBJECT_CONFIG = {
       <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-center sm:text-left">
         <span class="font-extrabold text-amber-300 tracking-wide">Copyright © 2026 CorruptedP. All rights reserved.</span>
         <span class="hidden sm:inline text-teal-600">•</span>
-        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 font-extrabold inline-block">Phiên bản 2.2.0</span>
+        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 font-extrabold inline-block">Phiên bản 2.2.1</span>
       </div>
       <div class="text-[11px] text-teal-200/80 text-center sm:text-right">
         Hệ Thống Ôn Tập &amp; Thi Thử Y Khoa Đa Học Phần ĐHYHN (Y1–Y6) • 16 Học phần (2627 câu hỏi chuẩn hóa)
@@ -1595,56 +1595,51 @@ function doGet(e) {
 
 
   <!-- COURSE & YEAR (Y1-Y6) SELECTOR PORTAL MODAL -->
-  <div id="courseHubModal" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5">
-    <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-5xl w-full max-h-[92vh] flex flex-col overflow-hidden">
-      <!-- Modal Header -->
-      <div class="bg-gradient-to-r from-emerald-950 via-teal-900 to-cyan-950 text-white px-6 py-5 flex items-start justify-between gap-4">
-        <div class="flex items-center gap-3.5">
-          <div class="w-12 h-12 rounded-2xl bg-white/15 border border-white/25 flex items-center justify-center text-2xl shadow-inner">🎓</div>
-          <div>
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-amber-400 text-slate-950">Cổng Chọn Học Phần Y Khoa (Y1 – Y6)</span>
-              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-400/20 text-emerald-200 border border-emerald-300/30">Tách biệt hoàn toàn dữ liệu &amp; tiến độ từng môn</span>
+  <div id="courseHubModal" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-2xl max-w-5xl w-full max-h-[92vh] flex flex-col overflow-hidden">
+      <!-- Modal Header (Compact for both Mobile & Desktop) -->
+      <div class="bg-gradient-to-r from-emerald-950 via-teal-900 to-cyan-950 text-white px-4 py-3 sm:px-5 sm:py-3.5 flex items-center justify-between gap-3 shrink-0">
+        <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center text-lg sm:text-xl shadow-inner shrink-0">🎓</div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-amber-400 text-slate-950">Cổng Chọn Học Phần (Y1 – Y6)</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-extrabold bg-teal-400/20 text-amber-300 border border-amber-300/40">Phiên bản 2.2.1</span>
             </div>
-            <h2 class="text-lg sm:text-xl font-extrabold tracking-tight mt-1">Chọn Năm Học &amp; Học Phần Bạn Muốn Ôn Luyện</h2>
-            <p class="text-xs text-teal-100/90 mt-0.5">Tích hợp trọn bộ <strong>16 Học phần (2627 câu hỏi &amp; tình huống lâm sàng chuẩn ĐHYHN)</strong>: <strong>S2.2 Nhiễm trùng - Miễn dịch (Y2)</strong> và <strong>15 Học phần Năm Y5 (NCKH3, S3.6 GMHS-HSCC, S3.7 Ung thư, S3.8 Tâm thần &amp; K120, S3.9 YHCT, S3.10 Truyền nhiễm, S3.11 YHGĐ-CSSKBĐ, S3.12.1 PHCN, S3.12.2 Lao, S3.12.3 Dị ứng, S3.12.4 Da liễu, S3.12.5 Mắt, S3.12.6 TMH, S3.12.7 RHM, S3.12.8 PTTHTM)</strong> • <strong class="text-amber-300">Phiên bản 2.2.0 (Copyright © 2026 CorruptedP. All rights reserved.)</strong></p>
+            <h2 class="text-sm sm:text-lg font-extrabold tracking-tight mt-0.5 truncate">Chọn học phần cần ôn luyện</h2>
           </div>
         </div>
-        <button type="button" onclick="closeCourseHubModal()" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold border border-white/20 transition shrink-0">✕ Đóng</button>
+        <button type="button" onclick="closeCourseHubModal()" class="px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold border border-white/20 transition shrink-0">✕ Đóng</button>
       </div>
 
-      <!-- Year Filter Tabs (Y1 - Y6) -->
-      <div class="px-6 py-3.5 bg-slate-100 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+      <!-- Year Filter Tabs (Y1 - Y6 only, compact) -->
+      <div class="px-3.5 py-2.5 sm:px-5 sm:py-3 bg-slate-100 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 shrink-0">
         <div class="flex flex-wrap items-center gap-1.5" id="courseHubYearTabs">
-          <button type="button" data-year="all" onclick="renderCourseHubCards(this.dataset.year)" data-year="all" class="hub-year-tab px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition bg-teal-800 text-white shadow-xs">Tất cả các năm (16 học phần • 2627 câu)</button>
-          <button type="button" onclick="renderCourseHubCards('Y1')" data-year="Y1" class="hub-year-tab px-3 py-1.5 rounded-xl text-xs font-bold transition bg-white hover:bg-slate-50 text-slate-700 border border-slate-300">Năm Y1</button>
-          <button type="button" onclick="renderCourseHubCards('Y2')" data-year="Y2" class="hub-year-tab px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition bg-white hover:bg-emerald-50 text-emerald-900 border-2 border-emerald-500">Năm Y2 • Nhiễm trùng - Miễn dịch (429 câu)</button>
-          <button type="button" onclick="renderCourseHubCards('Y3')" data-year="Y3" class="hub-year-tab px-3 py-1.5 rounded-xl text-xs font-bold transition bg-white hover:bg-slate-50 text-slate-700 border border-slate-300">Năm Y3</button>
-          <button type="button" onclick="renderCourseHubCards('Y4')" data-year="Y4" class="hub-year-tab px-3 py-1.5 rounded-xl text-xs font-bold transition bg-white hover:bg-slate-50 text-slate-700 border border-slate-300">Năm Y4</button>
-          <button type="button" onclick="renderCourseHubCards('Y5')" data-year="Y5" class="hub-year-tab px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition bg-white hover:bg-amber-50 text-amber-900 border-2 border-amber-500">Năm Y5 • 15 Học phần Chuyên khoa (2198 câu)</button>
-          <button type="button" onclick="renderCourseHubCards('Y6')" data-year="Y6" class="hub-year-tab px-3 py-1.5 rounded-xl text-xs font-bold transition bg-white hover:bg-slate-50 text-slate-700 border border-slate-300">Năm Y6</button>
+          <button type="button" onclick="renderCourseHubCards('Y1')" data-year="Y1" class="hub-year-tab px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white hover:bg-slate-50 text-slate-700 border border-slate-300">Năm Y1</button>
+          <button type="button" onclick="renderCourseHubCards('Y2')" data-year="Y2" class="hub-year-tab px-2.5 py-1 rounded-lg text-xs font-extrabold transition bg-white hover:bg-emerald-50 text-emerald-900 border border-emerald-500">Năm Y2 (1)</button>
+          <button type="button" onclick="renderCourseHubCards('Y3')" data-year="Y3" class="hub-year-tab px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white hover:bg-slate-50 text-slate-700 border border-slate-300">Năm Y3</button>
+          <button type="button" onclick="renderCourseHubCards('Y4')" data-year="Y4" class="hub-year-tab px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white hover:bg-slate-50 text-slate-700 border border-slate-300">Năm Y4</button>
+          <button type="button" onclick="renderCourseHubCards('Y5')" data-year="Y5" class="hub-year-tab px-2.5 py-1 rounded-lg text-xs font-extrabold transition bg-white hover:bg-amber-50 text-amber-900 border border-amber-500">Năm Y5 (15)</button>
+          <button type="button" onclick="renderCourseHubCards('Y6')" data-year="Y6" class="hub-year-tab px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white hover:bg-slate-50 text-slate-700 border border-slate-300">Năm Y6</button>
         </div>
-        <button type="button" onclick="openCreateCustomCourseModal()" class="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-xs transition flex items-center gap-1.5">
-          <span>➕ Thêm Học Phần Mới (Y1–Y6)</span>
+        <button type="button" onclick="openCreateCustomCourseModal(currentHubFilterYear)" class="px-2.5 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-[11px] sm:text-xs font-bold shadow-xs transition flex items-center gap-1">
+          <span>➕ Thêm học phần</span>
         </button>
       </div>
 
       <!-- Course Cards Grid -->
-      <div id="courseHubCardsContainer" class="p-6 overflow-y-auto grid grid-cols-1 md:grid-cols-3 gap-4 flex-1 bg-slate-50/70"></div>
+      <div id="courseHubCardsContainer" class="p-3 sm:p-5 min-h-0 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 flex-1 bg-slate-50/70"></div>
 
-      <!-- Modal Footer -->
-      <div class="px-6 py-3 bg-slate-900 text-slate-200 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2 text-[11px]">
-        <span class="font-bold text-amber-300">Copyright © 2026 CorruptedP. All rights reserved.</span>
-        <span class="px-2.5 py-0.5 rounded-full bg-teal-500/20 text-teal-200 border border-teal-400/30 font-extrabold">Phiên bản 2.2.0</span>
-      </div>
-      <div class="px-6 py-3.5 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
-        <label class="inline-flex items-center gap-2 text-slate-700 font-semibold cursor-pointer">
+      <!-- Compact Modal Footer -->
+      <div class="px-4 py-2.5 sm:px-5 sm:py-3 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs shrink-0">
+        <label class="inline-flex items-center gap-2 text-slate-700 font-semibold cursor-pointer text-[11px] sm:text-xs">
           <input type="checkbox" id="showCourseHubOnStartupToggle" checked onchange="toggleShowCourseHubOnStartup(this.checked)" class="w-4 h-4 rounded text-teal-700 focus:ring-teal-600" />
-          <span>Hiển thị bảng chọn Năm học &amp; Học phần ngay từ đầu mỗi khi mở trang web</span>
+          <span>Hiện bảng chọn học phần khi mở web</span>
         </label>
-        <div class="flex items-center gap-2">
-          <button type="button" onclick="openSubjectConfigModal()" class="px-3.5 py-1.5 rounded-xl border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold">⚙️ Tùy chỉnh tên học phần đang mở</button>
-          <button type="button" onclick="closeCourseHubModal()" class="px-4 py-1.5 rounded-xl bg-teal-800 hover:bg-teal-900 text-white font-bold shadow-xs">Tiếp tục ôn học phần đang chọn →</button>
+        <div class="flex items-center gap-2 ml-auto">
+          <span class="hidden md:inline text-[11px] font-bold text-slate-500">Phiên bản 2.2.1 • © 2026 CorruptedP</span>
+          <button type="button" onclick="openSubjectConfigModal()" class="hidden sm:inline-flex px-3 py-1.5 rounded-xl border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold text-xs">⚙️ Tùy chỉnh môn</button>
+          <button type="button" onclick="closeCourseHubModal()" class="px-3.5 py-1.5 rounded-xl bg-teal-800 hover:bg-teal-900 text-white font-bold shadow-xs text-xs">Tiếp tục ôn →</button>
         </div>
       </div>
     </div>

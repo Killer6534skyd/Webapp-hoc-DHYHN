@@ -2,6 +2,25 @@
 
 Tất cả những thay đổi đáng chú ý của dự án **Hệ Thống Ôn Tập Y Khoa Đa Học Phần ĐHYHN (Y1–Y6)** sẽ được ghi nhận tại đây.
 
+## [v2.2.1] - 2026-11-18
+
+### 🔄 Cải tiến Giao diện & Trải nghiệm Người dùng (UI/UX)
+- **Thu gọn thanh chọn học phần trên Desktop & Màn hình ngang:**
+  - Mặc định thu gọn danh sách 16 học phần thành thanh 1 dòng gọn gàng (chỉ hiện tên môn đang mở và các nút chọn năm `Y1`–`Y6`).
+  - Khi bấm vào năm học nào (`Y1`–`Y6`), hệ thống mới mở ngăn danh sách của **đúng năm học đó** (không hiển thị dàn trải tất cả các môn của mọi năm cùng lúc), và tự động thu gọn lại ngay sau khi chọn môn.
+- **Tối ưu hóa Cổng chọn Học phần (`#courseHubModal`) cho cả Mobile & Desktop:**
+  - Loại bỏ dòng chữ `"Tách biệt hoàn toàn dữ liệu & tiến độ từng môn"`.
+  - Rút gọn tiêu đề thành **`"Chọn học phần cần ôn luyện"`**.
+  - Loại bỏ đoạn mô tả dài `"Tích hợp trọn bộ 16 Học phần..."`, chỉ giữ lại huy hiệu **`Phiên bản 2.2.1`**.
+  - Bỏ tab `"Tất cả các năm"` gây rối mắt; mặc định hiển thị theo năm học hiện tại và chỉ liệt kê học phần của năm đang chọn (`Y1`–`Y6`).
+  - Thu gọn chiều cao Header, thanh chọn năm và Footer của hộp thoại trên điện thoại, giúp danh sách thẻ học phần hiển thị rộng rãi, dễ cuộn và thao tác ngay trên màn hình dọc.
+- **Tối ưu thanh Header cố định (Sticky Header) trên Mobile:**
+  - Ẩn dòng phụ đề tài liệu tham chiếu dài trên màn hình nhỏ để tiết kiệm diện tích hiển thị câu hỏi khi cuộn trang.
+- **Nâng cấp phiên bản:**
+  - Đồng bộ số hiệu phiên bản lên **2.2.1** trên toàn bộ giao diện, `package.json`, `sw.js` và 16 học phần.
+
+---
+
 ## [v2.2.0] - 2026-11-17
 
 ### ✨ Tính năng mới (Added)

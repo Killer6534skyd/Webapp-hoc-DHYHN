@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['nckh3_y5'] = {
   "icon": "🔬",
   "shortName": "Phương pháp NCKH Y học (NCKH3)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Phương Pháp NCKH Y Học (NCKH3 - Năm Y5)",
-  "subtitle": "Giáo trình Phương pháp Nghiên cứu Khoa học Y học - Đại học Y Hà Nội & Hướng dẫn ICH-GCP E6(R2) / Thông tư 29/2018/TT-BYT (96 Câu & 0 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.0)",
+  "subtitle": "Giáo trình Phương pháp Nghiên cứu Khoa học Y học - Đại học Y Hà Nội & Hướng dẫn ICH-GCP E6(R2) / Thông tư 29/2018/TT-BYT (96 Câu & 0 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.1)",
   "storageNamespace": "hmu_nckh3_y5_v210",
   "defaultExamCount": 40,
   "defaultExamMinutes": 30,

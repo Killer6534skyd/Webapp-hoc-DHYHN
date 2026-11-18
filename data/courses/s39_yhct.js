@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s39_yhct'] = {
   "icon": "🌿",
   "shortName": "Y học Cổ truyền (S3.9)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Y Học Cổ Truyền (S3.9 - Năm Y5)",
-  "subtitle": "Giáo trình Y học Cổ truyền - Đại học Y Hà Nội & Hướng dẫn Chẩn đoán, Điều trị bệnh theo YHCT Bộ Y tế (QĐ 5013/QĐ-BYT) (95 Câu & 20 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.0)",
+  "subtitle": "Giáo trình Y học Cổ truyền - Đại học Y Hà Nội & Hướng dẫn Chẩn đoán, Điều trị bệnh theo YHCT Bộ Y tế (QĐ 5013/QĐ-BYT) (95 Câu & 20 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.1)",
   "storageNamespace": "hmu_s39_yhct_v210",
   "defaultExamCount": 40,
   "defaultExamMinutes": 30,

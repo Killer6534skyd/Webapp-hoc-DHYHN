@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s312_5_mat'] = {
   "icon": "👁️",
   "shortName": "Nhãn khoa (S3.12.5)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Nhãn Khoa Lâm Sàng & Hình Ảnh Học (S3.12.5 - Năm Y5)",
-  "subtitle": "Giáo trình Nhãn khoa - Đại học Y Hà Nội & Hướng dẫn Chẩn đoán, Điều trị các Bệnh về Mắt Bộ Y tế (QĐ 40/QĐ-BYT) (43 Câu & 3 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.0)",
+  "subtitle": "Giáo trình Nhãn khoa - Đại học Y Hà Nội & Hướng dẫn Chẩn đoán, Điều trị các Bệnh về Mắt Bộ Y tế (QĐ 40/QĐ-BYT) (43 Câu & 3 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.1)",
   "storageNamespace": "hmu_s312_5_mat_v210",
   "defaultExamCount": 35,
   "defaultExamMinutes": 25,
