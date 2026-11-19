@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s37_s38_ung_thu'] = {
   "icon": "🎗️",
   "shortName": "Ung thư học (S3.7 / S3.8)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Ung Thư Học (S3.7 / S3.8 - Năm Y5)",
-  "subtitle": "Giáo trình Ung thư học Đại học Y Hà Nội, AJCC 8th, FIGO 2018 & Hướng dẫn Bộ Y tế (344 Câu & 31 Case Lâm Sàng - Phiên bản 2.2.1)",
+  "subtitle": "Giáo trình Ung thư học Đại học Y Hà Nội, AJCC 8th, FIGO 2018 & Hướng dẫn Bộ Y tế (344 Câu & 31 Case Lâm Sàng - Phiên bản 2.3.0)",
   "storageNamespace": "hmu_oncology_s37_s38_v1",
   "defaultExamCount": 45,
   "defaultExamMinutes": 30,

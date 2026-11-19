@@ -145,19 +145,19 @@ function renderExamActiveQuestion() {
   const optsHtml = q.options.map((optText, idx) => {
     const isChosen = selected === idx;
     const cls = isChosen
-      ? 'border-teal-600 bg-teal-50/90 text-teal-950 font-semibold ring-2 ring-teal-500/30'
+      ? 'border-teal-600 bg-teal-50/90 text-teal-950 font-semibold ring-2 ring-teal-500/25'
       : 'border-slate-200 bg-slate-50/60 hover:bg-slate-100 text-slate-800';
     const badgeCls = isChosen ? 'bg-teal-700 text-white border-teal-700' : 'bg-white text-slate-600 border-slate-300';
-    return '<button type="button" onclick="selectExamOption(' + idx + ')" class="w-full text-left px-4 py-3 rounded-xl border transition flex items-start gap-3 text-sm ' + cls + '"><span class="w-6 h-6 rounded-full border flex items-center justify-center text-xs font-bold shrink-0 ' + badgeCls + '">' + (idx + 1) + '</span><span class="flex-1 leading-snug">' + escapeHtml(optText) + '</span></button>';
+    return '<button type="button" onclick="selectExamOption(' + idx + ')" class="w-full text-left px-4 py-3 rounded-xl border transition flex items-start gap-3 text-[13.5px] sm:text-[14.5px] ' + cls + '"><span class="w-6 h-6 rounded-lg border flex items-center justify-center text-xs font-bold font-mono shrink-0 ' + badgeCls + '">' + (idx + 1) + '</span><span class="flex-1 leading-relaxed pt-0.5">' + escapeHtml(optText) + '</span></button>';
   }).join('');
 
   const hintBtnHtml = examState.allowHints
-    ? '<div class="pt-2"><button type="button" onclick="toggleExamQuestionHint()" class="px-3 py-1.5 rounded-lg border border-amber-200 bg-amber-50 hover:bg-amber-100 text-amber-800 text-xs font-semibold transition">' + (hintVisible ? 'Ẩn gợi ý lâm sàng' : '💡 Xem gợi ý lâm sàng') + '</button>' + (hintVisible ? '<div class="mt-2 rounded-lg bg-amber-50 border border-amber-200 px-3 py-2 text-xs text-amber-900"><strong>' + escapeHtml(q.hint) + '</strong></div>' : '') + '</div>'
+    ? '<div class="pt-2"><button type="button" onclick="toggleExamQuestionHint()" class="px-3 py-1.5 rounded-lg border border-amber-200 bg-amber-50 hover:bg-amber-100 text-amber-800 text-xs font-semibold transition">' + (hintVisible ? 'Ẩn gợi ý lâm sàng' : '💡 Xem gợi ý lâm sàng') + '</button>' + (hintVisible ? '<div class="mt-2 rounded-xl bg-amber-50 border border-amber-200 px-3.5 py-2.5 text-xs text-amber-950"><strong>' + escapeHtml(q.hint) + '</strong></div>' : '') + '</div>'
     : '';
 
   const stemBannerHtml = renderQuestionStemBanner(q, 'exam');
   const mediaHtml = renderQuestionMediaGallery(q);
-  document.getElementById('examQuestionCard').innerHTML = stemBannerHtml + '<div class="flex items-center justify-between gap-2 flex-wrap"><div class="flex items-center gap-2"><span class="px-2.5 py-0.5 rounded bg-teal-900 text-white text-xs font-bold">Câu ' + (examState.currentIndex + 1) + '</span><span class="px-2.5 py-0.5 rounded bg-slate-100 text-slate-700 text-xs font-semibold">' + escapeHtml(q.topic) + '</span><span class="px-2 py-0.5 rounded bg-teal-50 text-teal-800 text-xs">' + escapeHtml(q.part) + '</span></div>' + (isFlagged ? '<span class="text-xs font-semibold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded-full">🚩 Đang đặt cờ</span>' : '') + '</div><h3 class="text-base sm:text-lg font-bold text-slate-900 leading-relaxed">' + escapeHtml(q.q) + '</h3>' + mediaHtml + '<div class="space-y-2.5 pt-1">' + optsHtml + '</div>' + hintBtnHtml;
+  document.getElementById('examQuestionCard').innerHTML = stemBannerHtml + '<div class="flex items-center justify-between gap-2 flex-wrap"><div class="flex items-center gap-1.5 flex-wrap"><span class="px-2.5 py-0.5 rounded-md bg-slate-900 text-white text-xs font-bold font-mono">Câu ' + (examState.currentIndex + 1) + '</span><span class="px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-700 text-xs font-semibold">' + escapeHtml(q.topic) + '</span><span class="px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 border border-teal-200 text-xs font-semibold">' + escapeHtml(q.part) + '</span></div>' + (isFlagged ? '<span class="text-xs font-semibold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded-full">🚩 Đang đặt cờ</span>' : '') + '</div><h3 class="text-[15px] sm:text-base font-bold text-slate-900 leading-relaxed">' + escapeHtml(q.q) + '</h3>' + mediaHtml + '<div class="space-y-2.5 pt-1">' + optsHtml + '</div>' + hintBtnHtml;
 }
 
 function jumpToExamQuestionById(qId) {
@@ -217,15 +217,19 @@ function renderExamPalette() {
   const total = examState.questions.length;
   const answeredCount = Object.keys(examState.userAnswers).length;
   document.getElementById('examAnsweredCounter').textContent = 'Đã làm: ' + answeredCount + '/' + total;
+  const progFill = document.getElementById('examProgressBarFill');
+  if (progFill) {
+    progFill.style.width = (total > 0 ? Math.round((answeredCount / total) * 100) : 0) + '%';
+  }
   document.getElementById('examPaletteGrid').innerHTML = examState.questions.map((q, idx) => {
     const isCurrent = idx === examState.currentIndex;
     const isAnswered = examState.userAnswers.hasOwnProperty(q.id);
     const isFlagged = !!examState.flagged[q.id];
-    let cls = 'bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200';
+    let cls = 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100';
     if (isAnswered) cls = 'bg-teal-600 text-white border-teal-700 font-bold';
     if (isFlagged) cls = 'bg-amber-100 text-amber-900 border-amber-400 font-bold';
-    if (isCurrent) cls += ' ring-2 ring-offset-1 ring-teal-800';
-    return '<button type="button" onclick="jumpToExamQuestion(' + idx + ')" class="h-8 rounded-lg border text-xs transition flex items-center justify-center ' + cls + '">' + (idx + 1) + '</button>';
+    if (isCurrent) cls += ' ring-2 ring-offset-1 ring-teal-700';
+    return '<button type="button" onclick="jumpToExamQuestion(' + idx + ')" class="h-8 rounded-lg border text-xs font-mono transition flex items-center justify-center ' + cls + '">' + (idx + 1) + '</button>';
   }).join('');
 }
 

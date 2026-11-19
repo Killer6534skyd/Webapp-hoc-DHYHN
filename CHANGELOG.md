@@ -2,6 +2,33 @@
 
 Tất cả những thay đổi đáng chú ý của dự án **Hệ Thống Ôn Tập Y Khoa Đa Học Phần ĐHYHN (Y1–Y6)** sẽ được ghi nhận tại đây.
 
+## [v2.3.0] - 2026-11-19
+
+### 🎨 Thiết kế lại Toàn bộ Giao diện (Modern Clinical Editorial UI)
+- **Kiến trúc Khung Ứng dụng Thích ứng Đa thiết bị (Adaptive App Shell):**
+  - **Desktop & Màn hình rộng (`≥ 1024px`):** Thanh điều hướng bên trái (Sidebar) hiện đại với bộ biểu tượng SVG sắc nét cho cả 7 chức năng chính, hỗ trợ **thu gọn thành thanh biểu tượng (Collapsible Rail)** giúp tối đa hóa diện tích đọc câu hỏi lâm sàng và tự nhớ trạng thái thu gọn.
+  - **Mobile & Tablet (`< 1024px`):** Tự động chuyển thành **Thanh điều hướng đáy cố định (Mobile Bottom Navigation Bar)** gọn gàng với 5 mục truy cập nhanh (`Ôn tập`, `Thi thử`, `Thẻ 3D`, `Thống kê`, `Menu`) kèm ngăn kéo trượt ngang mượt mà (Slide-over Drawer) cho đầy đủ 7 tab, quản lý phiên học và đồng bộ.
+  - **Màn hình ngang chiều cao thấp (Mobile Landscape):** Thanh điều hướng đáy tự động ẩn đi và thanh tiêu đề được rút gọn siêu mỏng để tối đa hóa không gian đọc đề.
+- **Chế độ Giao diện Sáng / Tối (Light & Dark Mode):**
+  - Thiết kế hệ màu **Modern Clinical Editorial** độ tương phản cao, dịu mắt khi học ban đêm: nền sáng ngọc dịu (`#f5f7f6`) + điểm nhấn xanh y khoa (`#0f766e`) và nền tối slate trung tính (`#0c1218`) + teal dịu (`#14b8a6`).
+  - Hỗ trợ chuyển đổi tức thì bằng nút **🌙 / ☀️** (không bị nháy sáng khi tải lại trang) và lưu tự động trên thiết bị.
+- **Tối ưu Thanh Tiêu đề, Bộ chọn Học phần & Thanh Thống kê:**
+  - Thanh tiêu đề dạng kính mờ (Glassmorphism Sticky Topbar) mảnh gọn, loại bỏ hoàn toàn thanh cuộn ngang thừa trên Desktop.
+  - Thanh chọn học phần theo năm (`Y1`–`Y6`) 1 dòng gọn gàng, chỉ mở ngăn danh sách của **đúng năm học được bấm**, hỗ trợ bấm ra ngoài hoặc nhấn `Esc` để tự thu gọn.
+  - Dải thống kê tiến độ gọn nhẹ không bám dính gây che màn hình, có nút mở rộng nhanh trên điện thoại (`Chi tiết ▾`).
+  - Bổ sung nút **Cuộn lên đầu trang** tự hiện khi cuộn xuống sâu và **Thanh tiến độ trực quan** trong chế độ Thi thử Tính giờ.
+- **Trải nghiệm Đọc & Làm bài Sắc nét hơn:**
+  - Tích hợp cặp phông chữ hiện đại **Plus Jakarta Sans / Inter** kết hợp **JetBrains Mono** (`tabular-nums`) cho đồng hồ thi, số câu và tỷ lệ phần trăm.
+  - Tinh chỉnh thẻ câu hỏi, hộp tình huống thân chung (Shared Stem Banner), phương án trắc nghiệm dạng keycap `A/B/C/D`, và bảng điều hướng câu thi.
+
+### 🔒 Bảo toàn Tính năng & Tương thích Ngược 100%
+- Giữ nguyên toàn bộ **100% tính năng** của ứng dụng (7 tab chức năng, Highlight & Comment kiểu Google Docs, 16 học phần Y1–Y6 với 2.627 câu hỏi, Đa Profile, Đồng bộ Google/Microsoft Cloud & Apps Script, Quản lý Câu hỏi/Media/Lịch sử sửa 7 ngày, 4 Prompt AI, Phím tắt & PWA Offline).
+- Giữ nguyên toàn bộ khóa lưu trữ `localStorage` và định dạng file JSON sao lưu/nhập xuất: **tương thích ngược 100%** với dữ liệu từ các phiên bản `2.1.1`, `2.2.0` và `2.2.1`.
+- Sửa 2 lỗi nhỏ tiềm ẩn: sửa lỗi gọi sai hàm cập nhật tab Tổng kết khi chuyển môn học và tránh chia cho 0 khi tạo học phần trống mới.
+- Đồng bộ số hiệu phiên bản **2.3.0** trên toàn bộ giao diện, `package.json`, `sw.js`, `manifest.json`, `README.md` và 16 học phần.
+
+---
+
 ## [v2.2.1] - 2026-11-18
 
 ### 🔄 Cải tiến Giao diện & Trải nghiệm Người dùng (UI/UX)

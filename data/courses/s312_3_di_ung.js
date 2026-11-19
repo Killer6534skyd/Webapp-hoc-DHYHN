@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s312_3_di_ung'] = {
   "icon": "🛡️",
   "shortName": "Dị ứng - MD Lâm sàng (S3.12.3)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Dị Ứng - Miễn Dịch Lâm Sàng (S3.12.3 - Năm Y5)",
-  "subtitle": "Giáo trình Dị ứng - Miễn dịch Lâm sàng - Đại học Y Hà Nội & Thông tư 51/2017/TT-BYT về Phản vệ (176 Câu & 36 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.1)",
+  "subtitle": "Giáo trình Dị ứng - Miễn dịch Lâm sàng - Đại học Y Hà Nội & Thông tư 51/2017/TT-BYT về Phản vệ (176 Câu & 36 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.3.0)",
   "storageNamespace": "hmu_s312_3_di_ung_v210",
   "defaultExamCount": 40,
   "defaultExamMinutes": 30,

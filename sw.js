@@ -1,4 +1,4 @@
-const CACHE_NAME = 'webapp-hoc-dhyhn-v2.2.1';
+const CACHE_NAME = 'webapp-hoc-dhyhn-v2.3.0';
 const CORE_ASSETS = [
   './',
   './index.html',

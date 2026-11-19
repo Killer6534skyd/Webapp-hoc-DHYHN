@@ -94,12 +94,12 @@ function updateHeaderProfileAndCloudBadge() {
   const topGBtn = document.getElementById('topHeaderGoogleSignInBtn');
   if (topGText && topGBtn) {
     if (cs.provider !== 'local' && cs.email) {
-      const shortEmail = cs.email.length > 20 ? (cs.email.slice(0, 18) + '…') : cs.email;
-      topGText.textContent = 'Đã liên kết: ' + shortEmail;
-      topGBtn.className = 'px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold shadow-2xs transition text-xs flex items-center gap-1.5';
+      const shortEmail = cs.email.length > 18 ? (cs.email.slice(0, 16) + '…') : cs.email;
+      topGText.textContent = shortEmail;
+      topGBtn.className = 'px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-semibold shadow-2xs transition text-xs flex items-center gap-1.5';
     } else {
       topGText.textContent = 'Đăng nhập Google';
-      topGBtn.className = 'px-2.5 py-1 rounded-lg bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 font-bold shadow-2xs transition text-xs flex items-center gap-1.5';
+      topGBtn.className = 'px-2.5 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-semibold shadow-2xs transition text-xs flex items-center gap-1.5';
     }
   }
 }

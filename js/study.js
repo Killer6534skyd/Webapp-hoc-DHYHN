@@ -294,8 +294,8 @@ function renderQuestionStemBanner(q, mode) {
   if (!q || !q.stem_id || !q.stem_total || q.stem_total < 1) return '';
   const cfg = userProgress.stemPenaltyConfig || { enabled: true, wrongDeductionFactor: 0.5, clusterExtraPenalty: 0.25 };
   const penaltyBadge = cfg.enabled
-    ? '<span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 border border-rose-300 text-[11px] font-bold" title="Đúng vẫn cộng +1 điểm câu bình thường; Sai bị trừ hệ số ' + cfg.wrongDeductionFactor + ' điểm câu">⚠️ Sai trừ ' + (cfg.wrongDeductionFactor * 100) + '% điểm câu' + (cfg.clusterExtraPenalty > 0 ? ' (Phạt thêm ' + (cfg.clusterExtraPenalty * 100) + '% nếu sai ≥2 câu)' : '') + '</span>'
-    : '<span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px]">Đang tắt trừ điểm thân chung</span>';
+    ? '<span class="px-2 py-0.5 rounded-md bg-rose-50 text-rose-700 border border-rose-200 text-[11px] font-semibold" title="Đúng vẫn cộng +1 điểm câu bình thường; Sai bị trừ hệ số ' + cfg.wrongDeductionFactor + ' điểm câu">Sai trừ ' + (cfg.wrongDeductionFactor * 100) + '%' + (cfg.clusterExtraPenalty > 0 ? ' (+' + (cfg.clusterExtraPenalty * 100) + '% nếu sai ≥2)' : '') + '</span>'
+    : '<span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-500 text-[11px]">Tắt trừ điểm</span>';
 
   const siblingPills = (q.stem_siblings || []).map((sibId, sIdx) => {
     const sibQ = QUESTIONS_BANK.find(x => x.id === sibId);
@@ -309,19 +309,19 @@ function renderQuestionStemBanner(q, mode) {
     const clickAction = mode === 'study'
       ? 'jumpToStudyQuestionCard(\'' + sibId + '\')'
       : (mode === 'exam' ? 'jumpToExamQuestionById(\'' + sibId + '\')' : '');
-    return '<button type="button" ' + (clickAction ? 'onclick="' + clickAction + '"' : '') + ' class="px-2 py-0.5 rounded text-[11px] font-bold transition ' + (isCurrent ? 'bg-cyan-800 text-white shadow-xs' : 'bg-white text-cyan-900 border border-cyan-300 hover:bg-cyan-100') + '">Câu ' + (sIdx + 1) + '/' + q.stem_total + ' (#' + (sibQ ? sibQ.num : '') + ')' + dot + '</button>';
+    return '<button type="button" ' + (clickAction ? 'onclick="' + clickAction + '"' : '') + ' class="px-2 py-0.5 rounded-lg text-[11px] font-bold transition ' + (isCurrent ? 'bg-sky-700 text-white shadow-2xs' : 'bg-white text-sky-900 border border-sky-200 hover:bg-sky-100') + '">Câu ' + (sIdx + 1) + '/' + q.stem_total + ' (#' + (sibQ ? sibQ.num : '') + ')' + dot + '</button>';
   }).join('');
 
-  return '<div class="rounded-xl bg-gradient-to-r from-cyan-50 via-teal-50/70 to-sky-50 border-2 border-cyan-300/80 p-3.5 space-y-2">' +
+  return '<div class="stem-banner-box rounded-xl bg-sky-50/70 border border-sky-200 border-l-4 border-l-sky-600 p-3.5 space-y-2">' +
     '<div class="flex items-center justify-between gap-2 flex-wrap">' +
-      '<div class="flex items-center gap-1.5 flex-wrap">' +
-        '<span class="px-2.5 py-0.5 rounded-full bg-cyan-800 text-white text-xs font-extrabold flex items-center gap-1"><span>🔗</span><span>CÂU HỎI THÂN CHUNG (Câu ' + q.stem_index + '/' + q.stem_total + ')</span></span>' +
-        '<span class="text-xs font-extrabold text-cyan-950">' + escapeHtml(q.stem_title || 'Chùm câu hỏi cùng Case lâm sàng') + '</span>' +
+      '<div class="flex items-center gap-2 flex-wrap">' +
+        '<span class="px-2 py-0.5 rounded-md bg-sky-700 text-white text-[11px] font-bold">🔗 Case Thân chung (' + q.stem_index + '/' + q.stem_total + ')</span>' +
+        '<span class="text-xs font-extrabold text-sky-950">' + escapeHtml(q.stem_title || 'Chùm câu hỏi cùng Case lâm sàng') + '</span>' +
       '</div>' +
       penaltyBadge +
     '</div>' +
-    (q.stem_vignette ? '<div class="text-xs text-slate-800 bg-white/90 rounded-lg border border-cyan-200 px-3 py-2 leading-relaxed"><strong>📋 Tình huống / Bệnh án thân chung:</strong> ' + renderTextWithDocHighlights(q.stem_vignette, q.id) + '</div>' : '') +
-    (q.stem_total > 1 ? '<div class="flex items-center gap-1.5 flex-wrap pt-0.5"><span class="text-[11px] font-semibold text-cyan-900">Các câu trong cùng Case:</span>' + siblingPills + '</div>' : '') +
+    (q.stem_vignette ? '<div class="text-xs sm:text-[13px] text-slate-800 bg-white rounded-lg border border-sky-200/80 px-3 py-2 leading-relaxed"><strong>📋 Tình huống chung:</strong> ' + renderTextWithDocHighlights(q.stem_vignette, q.id) + '</div>' : '') +
+    (q.stem_total > 1 ? '<div class="flex items-center gap-1.5 flex-wrap pt-0.5"><span class="text-[11px] font-semibold text-sky-900">Chuyển câu trong Case:</span>' + siblingPills + '</div>' : '') +
   '</div>';
 }
 
@@ -345,7 +345,7 @@ function renderQuestionMediaGallery(q) {
           '<div class="aspect-video w-full"><iframe src="' + escapeHtml(m.embedUrl || m.url) + '" class="w-full h-full border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>' +
           '<div class="bg-white flex items-center justify-between px-3 py-1.5 text-xs">' +
             '<span class="font-medium text-slate-700">' + escapeHtml(m.caption || 'Video bài giảng / lâm sàng') + '</span>' +
-            '<a href="' + escapeHtml(m.url) + '" target="_blank" rel="noopener noreferrer" class="text-indigo-700 hover:underline font-semibold">Mở link gốc ↗</a>' +
+            '<a href="' + escapeHtml(m.url) + '" target="_blank" rel="noopener noreferrer" class="text-teal-700 hover:underline font-semibold">Mở link gốc ↗</a>' +
           '</div>' +
         '</div>';
       }
@@ -354,10 +354,9 @@ function renderQuestionMediaGallery(q) {
         '<div class="bg-white">' + captionHtml + '</div>' +
       '</div>';
     }
-    // Default: image (standard or hosted on Imgur / Postimage / Google Photos / Drive)
     return '<div class="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-2xs flex flex-col justify-between">' +
       '<div class="relative bg-slate-100 flex items-center justify-center p-2 min-h-[160px]">' +
-        '<img src="' + escapeHtml(m.embedUrl || m.url) + '" alt="' + escapeHtml(m.caption || 'Hình ảnh câu hỏi') + '" class="max-h-72 w-auto object-contain rounded cursor-zoom-in mx-auto" onclick="event.stopPropagation(); openMediaLightboxModal(\'' + escapeHtml(m.embedUrl || m.url) + '\', \'' + escapeHtml(m.caption || '') + '\')" onerror="this.onerror=null; this.outerHTML=\'<div class=\\\'p-4 text-center text-xs text-slate-600\\\'><div class=\\\'font-bold text-indigo-900 mb-1\\\'>🖼️ Hình ảnh từ ' + escapeHtml(m.platform || 'Hosting') + '</div><a href=\\\'' + escapeHtml(m.url) + '\\\' target=\\\'_blank\\\' rel=\\\'noopener noreferrer\\\' class=\\\'underline text-teal-700 font-semibold\\\'>Nhấn để mở xem hình ảnh trực tiếp ↗</a></div>\';" />' +
+        '<img src="' + escapeHtml(m.embedUrl || m.url) + '" alt="' + escapeHtml(m.caption || 'Hình ảnh câu hỏi') + '" class="max-h-72 w-auto object-contain rounded cursor-zoom-in mx-auto" onclick="event.stopPropagation(); openMediaLightboxModal(\'' + escapeHtml(m.embedUrl || m.url) + '\', \'' + escapeHtml(m.caption || '') + '\')" onerror="this.onerror=null; this.outerHTML=\'<div class=\\\'p-4 text-center text-xs text-slate-600\\\'><div class=\\\'font-bold text-slate-900 mb-1\\\'>🖼️ Hình ảnh từ ' + escapeHtml(m.platform || 'Hosting') + '</div><a href=\\\'' + escapeHtml(m.url) + '\\\' target=\\\'_blank\\\' rel=\\\'noopener noreferrer\\\' class=\\\'underline text-teal-700 font-semibold\\\'>Nhấn để mở xem hình ảnh trực tiếp ↗</a></div>\';" />' +
       '</div>' +
       '<div class="flex items-center justify-between gap-2 px-3 py-1.5 bg-slate-50 border-t border-slate-100 text-[11px] text-slate-600">' +
         '<span class="truncate font-medium">' + escapeHtml(m.caption || 'Hình ảnh minh họa lâm sàng') + '</span>' +
@@ -379,7 +378,7 @@ function openMediaLightboxModal(imgUrl, caption) {
   if (!modal || !titleEl || !bodyEl || !footerEl) return;
   titleEl.textContent = '🖼️ Xem phóng to hình ảnh lâm sàng';
   bodyEl.innerHTML = '<div class="space-y-3 text-center"><img src="' + escapeHtml(imgUrl) + '" class="max-h-[70vh] w-auto mx-auto rounded-xl border border-slate-200" /><div class="text-xs text-slate-700 font-medium">' + escapeHtml(caption || '') + '</div></div>';
-  footerEl.innerHTML = '<button type="button" onclick="closeCustomDataModal()" class="px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-xs font-semibold text-slate-700">Đóng</button>';
+  footerEl.innerHTML = '<button type="button" onclick="closeCustomDataModal()" class="px-4 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-xs font-semibold text-slate-700">Đóng</button>';
   modal.classList.remove('hidden');
 }
 
@@ -395,79 +394,79 @@ function renderStudyQuestionCard(q) {
   const isStem = !!(q.stem_id && q.stem_total > 1);
   const cfg = userProgress.stemPenaltyConfig || { enabled: true, wrongDeductionFactor: 0.5, clusterExtraPenalty: 0.25 };
 
-  let statusBadge = '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-600">Chưa làm</span>';
+  let statusBadge = '';
   if (hasAnswered) {
     if (isCorrect) {
-      statusBadge = '<span class="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-emerald-100 text-emerald-800">✓ Chính xác (+1.0đ câu)</span>';
+      statusBadge = '<span class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">✓ Đúng</span>';
     } else {
-      const penText = (isStem && cfg.enabled) ? ' (Trừ -' + cfg.wrongDeductionFactor + 'đ câu thân chung)' : '';
-      statusBadge = '<span class="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-rose-100 text-rose-800">✗ Đã chọn sai' + penText + '</span>';
+      const penText = (isStem && cfg.enabled) ? ' (-' + cfg.wrongDeductionFactor + 'đ)' : '';
+      statusBadge = '<span class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-rose-50 text-rose-800 border border-rose-200">✗ Sai' + penText + '</span>';
     }
   }
   const trapBadge = q.is_trap
-    ? '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-100 text-amber-800 border border-amber-300">⚠️ Câu bẫy / Lưu ý đề gốc</span>'
+    ? '<span class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-amber-50 text-amber-800 border border-amber-300">⚠️ Câu bẫy</span>'
     : '';
   const customBadge = q.is_custom
-    ? '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-indigo-100 text-indigo-800 border border-indigo-200">➕ Tự thêm</span>'
-    : (q.is_edited ? '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-cyan-100 text-cyan-800 border border-cyan-200">✏️ Đã chỉnh sửa</span>' : '');
+    ? '<span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-sky-50 text-sky-800 border border-sky-200">➕ Tự thêm</span>'
+    : (q.is_edited ? '<span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-teal-50 text-teal-800 border border-teal-200">✏️ Đã sửa</span>' : '');
   const highlightCountBadge = qHighlights.length > 0
-    ? '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-100 text-amber-900 border border-amber-300" title="Số đoạn chỉ bôi màu">🖍️ ' + qHighlights.length + ' bôi màu</span>'
+    ? '<span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-amber-50 text-amber-900 border border-amber-200" title="Số đoạn chỉ bôi màu">🖍️ ' + qHighlights.length + '</span>'
     : '';
   const commentCountBadge = qComments.length > 0
-    ? '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-indigo-100 text-indigo-900 border border-indigo-300" title="Nhấn vào phần chữ được bôi đậm có biểu tượng 💬 để mở Comment">💬 ' + qComments.length + ' comment</span>'
+    ? '<span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-sky-50 text-sky-900 border border-sky-200" title="Nhấn vào chữ bôi đậm có 💬 để xem Comment">💬 ' + qComments.length + '</span>'
     : '';
   const mediaBadge = (Array.isArray(q.media) && q.media.length > 0)
-    ? '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-purple-100 text-purple-900 border border-purple-300">🖼️ ' + q.media.length + ' media</span>'
+    ? '<span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">🖼️ ' + q.media.length + '</span>'
     : '';
 
   const optionsHtml = q.options.map((optText, idx) => {
-    let btnClass = 'border-slate-200 bg-slate-50/70 hover:bg-teal-50/60 hover:border-teal-300 text-slate-800';
-    let iconHtml = '<span class="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center text-xs font-bold text-slate-500 shrink-0">' + (idx + 1) + '</span>';
+    let btnClass = 'border-slate-200 bg-slate-50/60 hover:bg-teal-50/50 hover:border-teal-300 text-slate-800';
+    let iconHtml = '<span class="w-6 h-6 rounded-lg border border-slate-300 bg-white flex items-center justify-center text-xs font-bold font-mono text-slate-500 shrink-0">' + (idx + 1) + '</span>';
     if (expOpen || hasAnswered) {
       if (idx === q.correct_idx) {
-        btnClass = 'border-emerald-500 bg-emerald-50/90 text-emerald-950 font-semibold ring-1 ring-emerald-500/40';
-        iconHtml = '<span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-bold shrink-0">✓</span>';
+        btnClass = 'border-emerald-500 bg-emerald-50/90 text-emerald-950 font-semibold ring-1 ring-emerald-500/30';
+        iconHtml = '<span class="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs font-bold shrink-0">✓</span>';
       } else if (hasAnswered && idx === userChoice && idx !== q.correct_idx) {
         btnClass = 'border-rose-400 bg-rose-50 text-rose-900 line-through decoration-rose-400';
-        iconHtml = '<span class="w-5 h-5 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs font-bold shrink-0">✗</span>';
+        iconHtml = '<span class="w-6 h-6 rounded-lg bg-rose-600 text-white flex items-center justify-center text-xs font-bold shrink-0">✗</span>';
       }
     }
-    return '<button type="button" onclick="handleStudyOptionClick(event, \'' + q.id + '\', ' + idx + ')" class="w-full text-left px-3.5 py-2.5 rounded-xl border transition flex items-start gap-3 text-sm annotatable-region ' + btnClass + '" data-q-id="' + q.id + '">' + iconHtml + '<span class="flex-1 leading-snug">' + renderTextWithDocHighlights(optText, q.id) + '</span></button>';
+    return '<button type="button" onclick="handleStudyOptionClick(event, \'' + q.id + '\', ' + idx + ')" class="w-full text-left px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border transition flex items-start gap-3 text-[13.5px] sm:text-[14.5px] annotatable-region ' + btnClass + '" data-q-id="' + q.id + '">' + iconHtml + '<span class="flex-1 leading-relaxed pt-0.5">' + renderTextWithDocHighlights(optText, q.id) + '</span></button>';
   }).join('');
 
   const hintSection = hintOpen
-    ? '<div class="rounded-xl bg-amber-50 border border-amber-200 px-3.5 py-2.5 text-xs text-amber-900 leading-relaxed annotatable-region" data-q-id="' + q.id + '"><strong>💡 ' + renderTextWithDocHighlights(q.hint, q.id) + '</strong></div>'
+    ? '<div class="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 text-xs sm:text-[13px] text-amber-950 leading-relaxed annotatable-region" data-q-id="' + q.id + '"><strong>💡 Gợi ý:</strong> ' + renderTextWithDocHighlights(q.hint, q.id) + '</div>'
     : '';
   const trapBox = (q.is_trap && q.trap_note)
-    ? '<div class="rounded-lg bg-amber-100/80 border border-amber-300 px-3 py-2 text-xs text-amber-950 leading-relaxed annotatable-region" data-q-id="' + q.id + '"><strong>⚠️ Đính chính &amp; Lưu ý:</strong> ' + renderTextWithDocHighlights(q.trap_note, q.id) + '</div>'
+    ? '<div class="rounded-xl bg-amber-50 border border-amber-300 px-3.5 py-2.5 text-xs text-amber-950 leading-relaxed annotatable-region" data-q-id="' + q.id + '"><strong>⚠️ Đính chính &amp; Lưu ý:</strong> ' + renderTextWithDocHighlights(q.trap_note, q.id) + '</div>'
     : '';
   const expSection = expOpen
-    ? '<div class="rounded-xl bg-teal-50/70 border border-teal-200 p-4 space-y-2 text-xs sm:text-sm annotatable-region" data-q-id="' + q.id + '"><div class="font-bold text-emerald-800 text-sm">→ Đáp án chuẩn: ' + renderTextWithDocHighlights(q.ans, q.id) + '</div>' + trapBox + '<div class="text-slate-800 leading-relaxed"><strong>Giải thích chuyên môn:</strong> ' + renderTextWithDocHighlights(q.exp, q.id) + '</div><div class="pt-1 flex items-center justify-between flex-wrap gap-2 text-xs text-teal-800 border-t border-teal-200/60"><span>📖 Căn cứ: <a href="' + escapeHtml(q.ref_url) + '" target="_blank" rel="noopener noreferrer" class="underline font-semibold hover:text-teal-950">' + escapeHtml(q.ref_label) + '</a></span>' + (hasAnswered ? '<button type="button" onclick="clearSingleStudyAnswer(\'' + q.id + '\')" class="text-slate-500 hover:text-rose-700 underline">Làm lại câu này</button>' : '') + '</div></div>'
+    ? '<div class="rounded-xl bg-teal-50/70 border border-teal-200 p-4 space-y-2.5 text-xs sm:text-[13.5px] annotatable-region" data-q-id="' + q.id + '"><div class="font-extrabold text-emerald-800 text-sm">→ Đáp án chuẩn: ' + renderTextWithDocHighlights(q.ans, q.id) + '</div>' + trapBox + '<div class="text-slate-800 leading-relaxed"><strong>Giải thích chuyên môn:</strong> ' + renderTextWithDocHighlights(q.exp, q.id) + '</div><div class="pt-2 flex items-center justify-between flex-wrap gap-2 text-xs text-teal-800 border-t border-teal-200/70"><span>📖 Căn cứ: <a href="' + escapeHtml(q.ref_url) + '" target="_blank" rel="noopener noreferrer" class="underline font-semibold hover:text-teal-950">' + escapeHtml(q.ref_label) + '</a></span>' + (hasAnswered ? '<button type="button" onclick="clearSingleStudyAnswer(\'' + q.id + '\')" class="text-slate-500 hover:text-rose-700 font-semibold underline">Làm lại câu này</button>' : '') + '</div></div>'
     : '';
 
   const stemBannerHtml = renderQuestionStemBanner(q, 'study');
   const mediaGalleryHtml = renderQuestionMediaGallery(q);
 
-  return '<article id="card-' + q.id + '" data-q-id="' + q.id + '" class="bg-white rounded-xl border ' + (isStem ? 'border-cyan-300 ring-1 ring-cyan-200/60' : 'border-slate-200') + ' p-4 sm:p-5 shadow-xs space-y-3 transition">' +
+  return '<article id="card-' + q.id + '" data-q-id="' + q.id + '" class="app-card app-card-hover ' + (isStem ? 'border-sky-300' : '') + ' p-4 sm:p-5 space-y-3.5">' +
     stemBannerHtml +
     '<div class="flex items-center justify-between gap-2 flex-wrap">' +
       '<div class="flex items-center gap-1.5 flex-wrap">' +
-        '<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-teal-900 text-white" title="Mã định danh câu hỏi: #' + q.num + ' (' + escapeHtml(q.id) + ')">#' + q.num + '</span>' +
-        '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-teal-50 text-teal-800 border border-teal-200">' + escapeHtml(q.part) + '</span>' +
-        '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">' + escapeHtml(q.topic) + '</span>' +
+        '<span class="px-2 py-0.5 rounded-md text-[11px] font-bold font-mono bg-slate-900 text-white" title="Mã câu hỏi: #' + q.num + ' (' + escapeHtml(q.id) + ')">#' + q.num + '</span>' +
+        '<span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-teal-50 text-teal-800 border border-teal-200">' + escapeHtml(q.part) + '</span>' +
+        '<span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-slate-100 text-slate-600">' + escapeHtml(q.topic) + '</span>' +
         statusBadge + trapBadge + customBadge + highlightCountBadge + commentCountBadge + mediaBadge +
       '</div>' +
       '<div class="flex items-center gap-1.5">' +
-        '<button type="button" onclick="openManualDocCommentComposer(\'' + q.id + '\')" class="px-2.5 py-1 rounded-lg border border-indigo-200 bg-indigo-50/70 hover:bg-indigo-100 text-indigo-800 text-xs font-semibold transition" title="Bôi đen chữ bất kỳ trên câu hỏi hoặc nhấn vào đây để bôi màu / thêm Comment">🖍️/💬 Bôi màu &amp; Ghi chú</button>' +
-        '<button type="button" onclick="toggleBookmark(\'' + q.id + '\')" class="px-2.5 py-1 rounded-lg border text-xs font-semibold transition ' + (isBookmarked ? 'bg-amber-100 border-amber-300 text-amber-800' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-100') + '">' + (isBookmarked ? '⭐ Đã lưu' : '☆ Đánh dấu') + '</button>' +
+        '<button type="button" onclick="openManualDocCommentComposer(\'' + q.id + '\')" class="px-2.5 py-1 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-slate-600 text-xs font-semibold transition" title="Bôi đen chữ bất kỳ trên câu hỏi hoặc nhấn vào đây để ghi chú">🖍️ Ghi chú</button>' +
+        '<button type="button" onclick="toggleBookmark(\'' + q.id + '\')" class="px-2.5 py-1 rounded-lg border text-xs font-semibold transition ' + (isBookmarked ? 'bg-amber-50 border-amber-300 text-amber-800' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-100') + '">' + (isBookmarked ? '⭐ Đã lưu' : '☆ Lưu') + '</button>' +
       '</div>' +
     '</div>' +
-    '<h3 class="text-sm sm:text-base font-bold text-slate-900 leading-relaxed annotatable-region" data-q-id="' + q.id + '">' + renderTextWithDocHighlights(q.q, q.id) + '</h3>' +
+    '<h3 class="text-[14.5px] sm:text-[15.5px] font-bold text-slate-900 leading-relaxed annotatable-region" data-q-id="' + q.id + '">' + renderTextWithDocHighlights(q.q, q.id) + '</h3>' +
     mediaGalleryHtml +
     '<div class="space-y-2">' + optionsHtml + '</div>' +
-    '<div class="flex flex-wrap items-center gap-2 pt-1">' +
-      '<button type="button" onclick="toggleStudyHint(\'' + q.id + '\')" class="px-3 py-1.5 rounded-lg border border-amber-200 bg-amber-50 hover:bg-amber-100 text-amber-800 text-xs font-semibold transition">' + (hintOpen ? 'Ẩn gợi ý' : '💡 Gợi ý lâm sàng') + '</button>' +
-      '<button type="button" onclick="toggleStudyExp(\'' + q.id + '\')" class="px-3 py-1.5 rounded-lg border border-teal-200 bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-semibold transition">' + (expOpen ? 'Ẩn giải thích' : '👁️ Xem đáp án &amp; Giải thích') + '</button>' +
+    '<div class="flex flex-wrap items-center gap-2 pt-0.5">' +
+      '<button type="button" onclick="toggleStudyHint(\'' + q.id + '\')" class="px-3 py-1.5 rounded-lg border border-amber-200 bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-semibold transition">' + (hintOpen ? 'Ẩn gợi ý' : '💡 Gợi ý') + '</button>' +
+      '<button type="button" onclick="toggleStudyExp(\'' + q.id + '\')" class="px-3 py-1.5 rounded-lg border border-teal-200 bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-semibold transition">' + (expOpen ? 'Ẩn giải thích' : '👁️ Đáp án &amp; Giải thích') + '</button>' +
     '</div>' +
     hintSection + expSection +
   '</article>';

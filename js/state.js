@@ -189,7 +189,7 @@ function syncQuestionsBankWithCustomizations() {
     }
   });
   const hdrBadge = document.getElementById('headerTotalQuestionsBadge');
-  if (hdrBadge) hdrBadge.textContent = QUESTIONS_BANK.length + ' Câu Hỏi Chuẩn Hóa';
+  if (hdrBadge) hdrBadge.textContent = QUESTIONS_BANK.length + ' câu';
   populateStemIdDatalist();
 }
 
@@ -550,8 +550,14 @@ function restoreTabScrollState(tabName) {
 }
 
 window.addEventListener('scroll', function () {
+  const y = window.scrollY || document.documentElement.scrollTop || 0;
   if (!isRestoringTabScroll && currentTab) {
-    tabScrollPositions[currentTab] = window.scrollY || document.documentElement.scrollTop || 0;
+    tabScrollPositions[currentTab] = y;
+  }
+  const btt = document.getElementById('backToTopBtn');
+  if (btt) {
+    if (y > 400) btt.classList.remove('hidden');
+    else btt.classList.add('hidden');
   }
 }, { passive: true });
 
@@ -562,6 +568,7 @@ function switchTab(tabName, skipScrollRestore) {
   closeDocCommentViewer();
   closeDocHighlightViewer();
   closeDocCommentComposer();
+  if (typeof closeMobileNavDrawer === 'function') closeMobileNavDrawer();
   ['study', 'exam', 'flashcard', 'analytics', 'user', 'manage', 'guide'].forEach(t => {
     const view = document.getElementById('view-' + t);
     const btn = document.getElementById('tabBtn-' + t);
@@ -570,10 +577,16 @@ function switchTab(tabName, skipScrollRestore) {
       else view.classList.add('hidden');
     }
     if (btn) {
-      btn.className = (t === tabName)
-        ? 'tab-btn px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition flex items-center gap-1.5 whitespace-nowrap bg-white text-teal-900 shadow-sm'
-        : 'tab-btn px-3.5 py-2 rounded-lg text-xs md:text-sm font-semibold transition flex items-center gap-1.5 whitespace-nowrap bg-white/10 text-white hover:bg-white/20';
+      btn.classList.toggle('is-active', t === tabName);
+      btn.setAttribute('aria-current', t === tabName ? 'page' : 'false');
     }
+  });
+  // Sync mobile bottom navigation active highlight
+  const mobileMoreTabs = ['user', 'manage', 'guide'];
+  document.querySelectorAll('#mobileBottomNav .mobile-nav-item[data-mobile-tab]').forEach(el => {
+    const key = el.getAttribute('data-mobile-tab');
+    const isActive = (key === tabName) || (key === 'more' && mobileMoreTabs.includes(tabName));
+    el.classList.toggle('is-active', isActive);
   });
   if (tabName === 'study') applyStudyFilters();
   else if (tabName === 'flashcard') applyFlashcardFilters();
@@ -586,6 +599,88 @@ function switchTab(tabName, skipScrollRestore) {
   } else {
     restoreTabScrollState(tabName);
   }
+}
+
+// =========================================================================
+// v2.3.0 UI SHELL HELPERS (Theme, Adaptive Sidebar, Mobile Drawer, Stats)
+// =========================================================================
+const UI_THEME_STORAGE_KEY = 'hmu_ui_theme_v1';
+const SIDEBAR_COLLAPSED_STORAGE_KEY = 'hmu_sidebar_collapsed_v1';
+
+function syncThemeToggleButtonsUI() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+    const iconEl = btn.querySelector('.theme-toggle-icon');
+    const labelEl = btn.querySelector('.theme-toggle-label');
+    if (iconEl) iconEl.textContent = isDark ? '☀️' : '🌙';
+    if (labelEl) labelEl.textContent = isDark ? 'Giao diện sáng' : 'Giao diện tối';
+    btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+  });
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) metaTheme.setAttribute('content', isDark ? '#0c1218' : '#0f766e');
+}
+
+function initAppTheme() {
+  try {
+    const saved = localStorage.getItem(UI_THEME_STORAGE_KEY);
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  } catch (e) {}
+  syncThemeToggleButtonsUI();
+}
+
+function toggleAppTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    document.documentElement.removeAttribute('data-theme');
+    try { localStorage.setItem(UI_THEME_STORAGE_KEY, 'light'); } catch (e) {}
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    try { localStorage.setItem(UI_THEME_STORAGE_KEY, 'dark'); } catch (e) {}
+  }
+  syncThemeToggleButtonsUI();
+}
+
+function initSidebarState() {
+  try {
+    if (localStorage.getItem(SIDEBAR_COLLAPSED_STORAGE_KEY) === '1') {
+      document.body.classList.add('sidebar-collapsed');
+    }
+  } catch (e) {}
+}
+
+function toggleDesktopSidebar() {
+  const collapsed = document.body.classList.toggle('sidebar-collapsed');
+  try {
+    localStorage.setItem(SIDEBAR_COLLAPSED_STORAGE_KEY, collapsed ? '1' : '0');
+  } catch (e) {}
+}
+
+function openMobileNavDrawer() {
+  const sidebar = document.getElementById('appSidebar');
+  const backdrop = document.getElementById('mobileDrawerBackdrop');
+  if (sidebar) sidebar.classList.add('mobile-drawer-open');
+  if (backdrop) backdrop.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileNavDrawer() {
+  const sidebar = document.getElementById('appSidebar');
+  const backdrop = document.getElementById('mobileDrawerBackdrop');
+  if (sidebar) sidebar.classList.remove('mobile-drawer-open');
+  if (backdrop) backdrop.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+function toggleMobileStatsExpanded() {
+  const bar = document.getElementById('mobileExtraStatsBar');
+  const btn = document.getElementById('mobileStatsExpandBtn');
+  if (!bar) return;
+  const isHidden = bar.classList.toggle('hidden');
+  if (btn) btn.textContent = isHidden ? 'Chi tiết ▾' : 'Thu gọn ▴';
 }
 
 function populateTopicDropdowns() {

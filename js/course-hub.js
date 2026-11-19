@@ -175,13 +175,13 @@ function updateTopBarYearDrawerUI() {
     const isExpandedYear = selectedTopBarYear === yr;
     const isCourseYear = activeCourseObj && activeCourseObj.year === yr;
     if (isExpandedYear) {
-      yBtn.className = 'year-pill-btn px-2.5 py-1 rounded-lg text-xs font-extrabold transition bg-amber-400 text-slate-950 ring-2 ring-amber-200 shadow-xs';
+      yBtn.className = 'year-pill-btn px-2.5 py-1 rounded-lg text-xs font-extrabold transition whitespace-nowrap bg-teal-700 text-white shadow-xs';
     } else if (isCourseYear) {
-      yBtn.className = 'year-pill-btn px-2.5 py-1 rounded-lg text-xs font-extrabold transition bg-emerald-500 text-slate-950 shadow-2xs';
+      yBtn.className = 'year-pill-btn px-2.5 py-1 rounded-lg text-xs font-extrabold transition whitespace-nowrap bg-teal-50 text-teal-800 border border-teal-300';
     } else if (yr === 'Y2' || yr === 'Y5') {
-      yBtn.className = 'year-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold transition bg-teal-500/20 border border-teal-400/40 text-teal-200 hover:bg-teal-500/30';
+      yBtn.className = 'year-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold transition whitespace-nowrap bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200';
     } else {
-      yBtn.className = 'year-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white/5 hover:bg-white/15 text-slate-300';
+      yBtn.className = 'year-pill-btn px-2.5 py-1 rounded-lg text-xs font-semibold transition whitespace-nowrap text-slate-500 hover:bg-slate-100 hover:text-slate-800';
     }
   });
 
@@ -198,7 +198,7 @@ function updateTopBarYearDrawerUI() {
   drawer.classList.remove('hidden');
   const coursesInYear = Object.values(COURSE_BANKS_DATA).filter(c => c.year === selectedTopBarYear);
   if (drawerTitle) {
-    drawerTitle.textContent = '🎓 Học phần Năm ' + selectedTopBarYear + ' (' + coursesInYear.length + ' môn) — Chọn học phần để mở:';
+    drawerTitle.textContent = 'Học phần Năm ' + selectedTopBarYear + ' (' + coursesInYear.length + ' môn):';
   }
 
   // Show only static buttons belonging to selectedTopBarYear
@@ -212,9 +212,9 @@ function updateTopBarYearDrawerUI() {
     }
     btn.classList.remove('hidden');
     if (cid === activeCourseId) {
-      btn.className = 'px-2.5 py-1 rounded-lg text-xs font-extrabold transition flex items-center gap-1.5 bg-emerald-500 text-slate-950 shadow-sm border border-emerald-300';
+      btn.className = 'px-2.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-teal-700 text-white shadow-xs';
     } else {
-      btn.className = 'px-2.5 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-slate-200 border border-white/15';
+      btn.className = 'px-2.5 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 bg-white hover:bg-teal-50 text-slate-700 hover:text-teal-900 border border-slate-200 hover:border-teal-300';
     }
   });
 
@@ -223,19 +223,27 @@ function updateTopBarYearDrawerUI() {
     const customForYear = coursesInYear.filter(c => !document.getElementById('quickCourseBtn-' + c.id));
     if (coursesInYear.length === 0) {
       dynSlot.innerHTML =
-        '<span class="text-xs text-slate-300 italic mr-2">Năm ' + escapeHtml(selectedTopBarYear) + ' chưa có học phần nào.</span>' +
-        '<button type="button" onclick="openCreateCustomCourseModal(\'' + escapeHtml(selectedTopBarYear) + '\')" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white transition">➕ Thêm học phần ' + escapeHtml(selectedTopBarYear) + '</button>';
+        '<span class="text-xs text-slate-500 italic mr-2">Năm ' + escapeHtml(selectedTopBarYear) + ' chưa có học phần mặc định.</span>' +
+        '<button type="button" onclick="openCreateCustomCourseModal(\'' + escapeHtml(selectedTopBarYear) + '\')" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-teal-700 hover:bg-teal-800 text-white transition">➕ Thêm học phần ' + escapeHtml(selectedTopBarYear) + '</button>';
     } else {
       dynSlot.innerHTML = customForYear.map(c => {
         const isCur = c.id === activeCourseId;
         const cls = isCur
-          ? 'px-2.5 py-1 rounded-lg text-xs font-extrabold transition flex items-center gap-1.5 bg-emerald-500 text-slate-950 shadow-sm border border-emerald-300'
-          : 'px-2.5 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-slate-200 border border-white/15';
+          ? 'px-2.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-teal-700 text-white shadow-xs'
+          : 'px-2.5 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 bg-white hover:bg-teal-50 text-slate-700 hover:text-teal-900 border border-slate-200 hover:border-teal-300';
         return '<button type="button" onclick="switchActiveCourse(\'' + escapeHtml(c.id) + '\')" class="' + cls + '"><span>' + escapeHtml(c.icon || '📘') + '</span><span>' + escapeHtml(c.shortName || c.subjectName) + ' (' + (c.questions ? c.questions.length : 0) + ' câu)</span></button>';
       }).join('');
     }
   }
 }
+
+document.addEventListener('click', function (e) {
+  if (!selectedTopBarYear) return;
+  const root = document.getElementById('topBarSwitcherRoot');
+  if (root && !root.contains(e.target)) {
+    closeTopBarYearCourses();
+  }
+});
 
 function resetUserProgressMemoryForCourseSwitch() {
   userProgress = {
@@ -324,7 +332,7 @@ function switchActiveCourse(courseId, closeHubAfter) {
   updateTopStats();
   applyStudyFilters();
   applyFlashcardFilters();
-  if (currentTab === 'analytics') renderAnalyticsView();
+  if (currentTab === 'analytics') renderAnalyticsDashboard();
   if (currentTab === 'user') renderUserProfileAndAdvisor();
   if (currentTab === 'manage') {
     renderManageQuestionsList();
@@ -390,13 +398,11 @@ function renderCourseHubCards(filterYear) {
   document.querySelectorAll('.hub-year-tab').forEach(btn => {
     const yr = btn.getAttribute('data-year');
     if (yr === currentHubFilterYear) {
-      btn.className = 'hub-year-tab px-2.5 py-1 rounded-lg text-xs font-extrabold transition bg-teal-800 text-white shadow-xs';
-    } else if (yr === 'Y2') {
-      btn.className = 'hub-year-tab px-2.5 py-1 rounded-lg text-xs font-extrabold transition bg-white hover:bg-emerald-50 text-emerald-900 border border-emerald-500';
-    } else if (yr === 'Y5') {
-      btn.className = 'hub-year-tab px-2.5 py-1 rounded-lg text-xs font-extrabold transition bg-white hover:bg-amber-50 text-amber-900 border border-amber-500';
+      btn.className = 'hub-year-tab px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-extrabold transition whitespace-nowrap bg-teal-700 text-white shadow-xs';
+    } else if (yr === 'Y2' || yr === 'Y5') {
+      btn.className = 'hub-year-tab px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-bold transition whitespace-nowrap bg-white hover:bg-teal-50 text-slate-800 border border-slate-200 hover:border-teal-300';
     } else {
-      btn.className = 'hub-year-tab px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white hover:bg-slate-50 text-slate-700 border border-slate-300';
+      btn.className = 'hub-year-tab px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold transition whitespace-nowrap bg-white hover:bg-slate-100 text-slate-500 border border-slate-200';
     }
   });
 
@@ -408,14 +414,14 @@ function renderCourseHubCards(filterYear) {
 
   if (filtered.length === 0) {
     container.innerHTML =
-      '<div class="col-span-full bg-white rounded-2xl border-2 border-dashed border-slate-300 p-6 text-center space-y-2.5">' +
+      '<div class="col-span-full bg-white rounded-2xl border border-dashed border-slate-300 p-6 text-center space-y-2.5">' +
         '<div class="text-2xl">📂</div>' +
         '<h3 class="text-sm sm:text-base font-extrabold text-slate-900">Năm học ' + escapeHtml(currentHubFilterYear) + ' hiện chưa có học phần mặc định</h3>' +
-        '<p class="text-xs text-slate-600 max-w-md mx-auto">Các học phần có sẵn hiện nằm ở <strong>Năm Y2 (1 môn)</strong> và <strong>Năm Y5 (15 môn)</strong>. Bạn có thể chuyển sang năm đó hoặc tạo học phần mới cho ' + escapeHtml(currentHubFilterYear) + '.</p>' +
+        '<p class="text-xs text-slate-500 max-w-md mx-auto">Các học phần có sẵn nằm ở <strong>Năm Y2 (1 môn)</strong> và <strong>Năm Y5 (15 môn)</strong>. Bạn có thể chuyển nhanh hoặc tạo học phần mới.</p>' +
         '<div class="flex flex-wrap items-center justify-center gap-2 pt-1">' +
-          '<button type="button" onclick="renderCourseHubCards(\'Y2\')" class="px-3.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold">Mở Năm Y2 (1 môn)</button>' +
-          '<button type="button" onclick="renderCourseHubCards(\'Y5\')" class="px-3.5 py-1.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold">Mở Năm Y5 (15 môn)</button>' +
-          '<button type="button" data-year="' + escapeHtml(currentHubFilterYear) + '" onclick="openCreateCustomCourseModal(this.dataset.year)" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold">➕ Tạo học phần ' + escapeHtml(currentHubFilterYear) + '</button>' +
+          '<button type="button" onclick="renderCourseHubCards(\'Y2\')" class="px-3.5 py-1.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold">Mở Năm Y2 (1 môn)</button>' +
+          '<button type="button" onclick="renderCourseHubCards(\'Y5\')" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold">Mở Năm Y5 (15 môn)</button>' +
+          '<button type="button" data-year="' + escapeHtml(currentHubFilterYear) + '" onclick="openCreateCustomCourseModal(this.dataset.year)" class="px-3.5 py-1.5 rounded-xl border border-teal-300 bg-teal-50 hover:bg-teal-100 text-teal-900 text-xs font-bold">➕ Tạo học phần ' + escapeHtml(currentHubFilterYear) + '</button>' +
         '</div>' +
       '</div>';
     return;
@@ -425,52 +431,49 @@ function renderCourseHubCards(filterYear) {
     const st = getCourseProgressSummary(c);
     const isCurrent = c.id === activeCourseId;
     const yearBadgeClass = c.year === 'Y2'
-      ? 'bg-emerald-100 text-emerald-900 border-emerald-300'
-      : (c.year === 'Y5' ? 'bg-amber-100 text-amber-900 border-amber-300' : 'bg-indigo-100 text-indigo-900 border-indigo-300');
+      ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+      : (c.year === 'Y5' ? 'bg-amber-50 text-amber-800 border-amber-200' : 'bg-sky-50 text-sky-800 border-sky-200');
 
-    return '<div class="rounded-2xl border-2 ' + (isCurrent ? 'border-teal-600 bg-teal-50/40 ring-2 ring-teal-500/30' : 'border-slate-200 bg-white hover:border-teal-400') + ' p-3.5 sm:p-4 shadow-xs flex flex-col justify-between space-y-2.5 sm:space-y-3 transition">' +
-      '<div class="space-y-2 sm:space-y-2.5">' +
-        '<div class="flex items-center justify-between gap-2 flex-wrap">' +
-          '<span class="px-2 py-0.5 rounded-full text-[11px] font-extrabold border ' + yearBadgeClass + '">🎓 Năm ' + escapeHtml(c.year) + '</span>' +
-          (isCurrent ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-teal-700 text-white">✓ Đang mở</span>' : '') +
+    return '<div class="rounded-2xl border ' + (isCurrent ? 'border-teal-600 bg-teal-50/40 ring-2 ring-teal-500/20' : 'border-slate-200 bg-white hover:border-teal-400 hover:shadow-sm') + ' p-3.5 sm:p-4 flex flex-col justify-between space-y-3 transition">' +
+      '<div class="space-y-2.5">' +
+        '<div class="flex items-center justify-between gap-2">' +
+          '<span class="px-2 py-0.5 rounded-md text-[11px] font-bold border ' + yearBadgeClass + '">Năm ' + escapeHtml(c.year) + '</span>' +
+          (isCurrent ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-teal-700 text-white">✓ Đang mở</span>' : '') +
         '</div>' +
         '<div class="flex items-start gap-2.5">' +
-          '<div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-xl shrink-0">' + escapeHtml(c.icon || '📘') + '</div>' +
+          '<div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-xl shrink-0">' + escapeHtml(c.icon || '📘') + '</div>' +
           '<div class="min-w-0">' +
-            '<h3 class="text-sm sm:text-base font-extrabold text-slate-900 leading-snug">' + escapeHtml(c.shortName || c.subjectName) + '</h3>' +
+            '<h3 class="text-sm font-extrabold text-slate-900 leading-snug">' + escapeHtml(c.shortName || c.subjectName) + '</h3>' +
             '<p class="text-[11px] text-slate-500 mt-0.5 truncate">' + escapeHtml(c.yearLabel || ('Năm học ' + c.year)) + '</p>' +
           '</div>' +
         '</div>' +
-        '<p class="text-[11px] sm:text-xs text-slate-600 leading-relaxed line-clamp-2">' + escapeHtml(c.subtitle || '') + '</p>' +
         '<div class="grid grid-cols-3 gap-1.5 text-center">' +
           '<div class="p-1.5 rounded-xl bg-slate-50 border border-slate-200">' +
-            '<div class="text-[10px] text-slate-500 font-semibold">Ngân hàng</div>' +
-            '<div class="text-xs sm:text-sm font-black text-slate-900">' + st.total + ' câu</div>' +
+            '<div class="text-[10px] text-slate-500 font-medium">Câu hỏi</div>' +
+            '<div class="text-xs font-extrabold text-slate-900 font-mono">' + st.total + '</div>' +
           '</div>' +
-          '<div class="p-1.5 rounded-xl bg-cyan-50/70 border border-cyan-200">' +
-            '<div class="text-[10px] text-cyan-800 font-semibold">Thân chung</div>' +
-            '<div class="text-xs sm:text-sm font-black text-cyan-950">' + st.caseCount + ' chùm</div>' +
+          '<div class="p-1.5 rounded-xl bg-sky-50/70 border border-sky-200">' +
+            '<div class="text-[10px] text-sky-800 font-medium">Thân chung</div>' +
+            '<div class="text-xs font-extrabold text-sky-900 font-mono">' + st.caseCount + '</div>' +
           '</div>' +
           '<div class="p-1.5 rounded-xl bg-emerald-50/70 border border-emerald-200">' +
-            '<div class="text-[10px] text-emerald-800 font-semibold">Đã luyện</div>' +
-            '<div class="text-xs sm:text-sm font-black text-emerald-950">' + st.done + '/' + st.total + '</div>' +
+            '<div class="text-[10px] text-emerald-800 font-medium">Đã làm</div>' +
+            '<div class="text-xs font-extrabold text-emerald-900 font-mono">' + st.done + '/' + st.total + '</div>' +
           '</div>' +
         '</div>' +
         '<div class="space-y-1">' +
-          '<div class="flex items-center justify-between text-[11px] text-slate-600">' +
-            '<span>Tiến độ: <strong>' + st.pct + '%</strong></span>' +
-            '<span>Đúng: <strong class="text-emerald-700">' + st.acc + '%</strong></span>' +
+          '<div class="flex items-center justify-between text-[11px] text-slate-500">' +
+            '<span>Tiến độ <strong class="text-slate-800">' + st.pct + '%</strong></span>' +
+            '<span>Đúng <strong class="text-emerald-700">' + st.acc + '%</strong></span>' +
           '</div>' +
-          '<div class="w-full h-1.5 rounded-full bg-slate-200 overflow-hidden">' +
+          '<div class="w-full h-1.5 rounded-full bg-slate-100 overflow-hidden">' +
             '<div class="h-full bg-teal-600 rounded-full transition-all" style="width:' + st.pct + '%"></div>' +
           '</div>' +
         '</div>' +
       '</div>' +
-      '<div class="pt-2 border-t border-slate-100">' +
-        '<button type="button" data-cid="' + escapeHtml(c.id) + '" onclick="switchActiveCourse(this.dataset.cid, true)" class="w-full py-2 px-3 rounded-xl ' + (isCurrent ? 'bg-teal-800 hover:bg-teal-900' : 'bg-teal-600 hover:bg-teal-700') + ' text-white font-extrabold text-xs shadow-sm transition flex items-center justify-center gap-1.5">' +
-          '<span>🚀 ' + (isCurrent ? 'Tiếp tục Ôn luyện' : 'Chọn & Ôn luyện Ngay') + '</span>' +
-        '</button>' +
-      '</div>' +
+      '<button type="button" data-cid="' + escapeHtml(c.id) + '" onclick="switchActiveCourse(this.dataset.cid, true)" class="w-full py-2 px-3 rounded-xl ' + (isCurrent ? 'bg-teal-800 hover:bg-teal-900 text-white' : 'bg-teal-50 hover:bg-teal-700 text-teal-900 hover:text-white border border-teal-200 hover:border-teal-700') + ' font-bold text-xs transition flex items-center justify-center gap-1.5">' +
+        '<span>' + (isCurrent ? 'Tiếp tục ôn luyện →' : 'Chọn học phần này') + '</span>' +
+      '</button>' +
     '</div>';
   }).join('');
 }

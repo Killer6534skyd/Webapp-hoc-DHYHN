@@ -8,7 +8,7 @@ function renderAnalyticsDashboard() {
       else wrong++;
     }
   });
-  const pctDone = Math.round((done / total) * 100);
+  const pctDone = total > 0 ? Math.round((done / total) * 100) : 0;
   const acc = done > 0 ? Math.round((correct / done) * 100) : 0;
   let fcEasy = 0, fcNeedReview = 0;
   QUESTIONS_BANK.forEach(q => {
@@ -200,7 +200,7 @@ function openKeyboardShortcutsHelpModal() {
   const footerEl = document.getElementById('customDataModalFooter');
   if (!modal || !titleEl || !bodyEl || !footerEl) return;
 
-  titleEl.textContent = '⌨️ Bảng Phím Tắt Nhanh (Phiên bản 2.2.1)';
+  titleEl.textContent = '⌨️ Bảng Phím Tắt Nhanh (Phiên bản 2.3.0)';
   bodyEl.innerHTML = '<div class="space-y-4 text-xs">' +
     '<div class="p-3 rounded-xl bg-teal-50 border border-teal-200 text-teal-950">' +
       'Sử dụng phím tắt trên bàn phím máy tính giúp tăng tốc độ làm đề, lật Flashcard và tra cứu câu hỏi. Nhấn <kbd class="px-1.5 py-0.5 rounded bg-white border border-teal-300 font-mono font-bold">?</kbd> bất kỳ lúc nào để mở bảng này.' +
@@ -242,7 +242,7 @@ function openKeyboardShortcutsHelpModal() {
           '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">Alt + 1..7</kbd>: Chuyển nhanh giữa 7 Tab chức năng</li>' +
           '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">M</kbd>: Mở Cổng chọn 16 Học phần (Y1–Y6)</li>' +
           '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">?</kbd>: Mở bảng hướng dẫn phím tắt này</li>' +
-          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">Esc</kbd>: Đóng hộp thoại (Modal) đang mở</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">Esc</kbd>: Đóng hộp thoại / ngăn chọn đang mở</li>' +
         '</ul>' +
       '</div>' +
     '</div>' +
@@ -257,6 +257,8 @@ document.addEventListener('keydown', function (e) {
     if (typeof closeCustomDataModal === 'function') closeCustomDataModal();
     if (typeof closeAppModal === 'function') closeAppModal();
     if (typeof closeCourseHubModal === 'function') closeCourseHubModal();
+    if (typeof closeMobileNavDrawer === 'function') closeMobileNavDrawer();
+    if (typeof closeTopBarYearCourses === 'function') closeTopBarYearCourses();
     return;
   }
 

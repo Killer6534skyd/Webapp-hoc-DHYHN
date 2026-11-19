@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s312_7_rhm'] = {
   "icon": "🦷",
   "shortName": "Răng Hàm Mặt (S3.12.7)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Răng Hàm Mặt (S3.12.7 - Năm Y5)",
-  "subtitle": "Giáo trình Răng Hàm Mặt - Viện Đào tạo Răng Hàm Mặt Đại học Y Hà Nội & Hướng dẫn Bộ Y tế (QĐ 3108/QĐ-BYT) (119 Câu & 6 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.2.1)",
+  "subtitle": "Giáo trình Răng Hàm Mặt - Viện Đào tạo Răng Hàm Mặt Đại học Y Hà Nội & Hướng dẫn Bộ Y tế (QĐ 3108/QĐ-BYT) (119 Câu & 6 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.3.0)",
   "storageNamespace": "hmu_s312_7_rhm_v210",
   "defaultExamCount": 40,
   "defaultExamMinutes": 30,
