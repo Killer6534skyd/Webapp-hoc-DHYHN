@@ -17,6 +17,8 @@ try {
 
 const COURSE_SCRIPT_MANIFEST = {
   s22_ntmd: 'data/courses/s22_ntmd.js',
+  s28_than_kinh_hanh_vi: 'data/courses/s28_than_kinh_hanh_vi.js',
+  s211_sinh_duc_sinh_san: 'data/courses/s211_sinh_duc_sinh_san.js',
   s310_truyen_nhiem: 'data/courses/s310_truyen_nhiem.js',
   s37_s38_ung_thu: 'data/courses/s37_s38_ung_thu.js',
   nckh3_y5: 'data/courses/nckh3_y5.js',

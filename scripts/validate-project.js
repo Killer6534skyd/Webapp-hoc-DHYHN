@@ -52,7 +52,7 @@ for (const rel of dataScripts) {
 
 const courses = sandbox.COURSE_BANKS_DATA || {};
 const courseIds = Object.keys(courses);
-assert(courseIds.length >= 16, `Số lượng học phần không đủ (hiện có ${courseIds.length})`);
+assert(courseIds.length >= 18, `Số lượng học phần không đủ (hiện có ${courseIds.length})`);
 
 let totalQuestions = 0;
 for (const cid of courseIds) {

@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s310_truyen_nhiem'] = {
   "icon": "🏥",
   "shortName": "Bệnh Truyền nhiễm (S3.10)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Bệnh Truyền Nhiễm (S3.10 - Năm Y5)",
-  "subtitle": "Giáo trình Truyền nhiễm Đại học Y Hà Nội & Phác đồ Chẩn đoán, Điều trị Bộ Y tế (275 Câu & 24 Case Lâm Sàng - Phiên bản 2.3.0)",
+  "subtitle": "Giáo trình Truyền nhiễm Đại học Y Hà Nội & Phác đồ Chẩn đoán, Điều trị Bộ Y tế (275 Câu & 24 Case Lâm Sàng - Phiên bản 2.3.1)",
   "storageNamespace": "hmu_truyen_nhiem_k119_v1",
   "defaultExamCount": 37,
   "defaultExamMinutes": 30,

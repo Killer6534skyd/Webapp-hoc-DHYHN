@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s36_gmhs_hscc'] = {
   "icon": "🚑",
   "shortName": "GMHS & Hồi sức Cấp cứu (S3.6)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Gây Mê Hồi Sức & Hồi Sức Cấp Cứu (S3.6 - Năm Y5)",
-  "subtitle": "Giáo trình Gây mê Hồi sức & Hồi sức Cấp cứu - Đại học Y Hà Nội & Hướng dẫn Cấp cứu - Hồi sức Bộ Y tế (105 Câu & 8 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.3.0)",
+  "subtitle": "Giáo trình Gây mê Hồi sức & Hồi sức Cấp cứu - Đại học Y Hà Nội & Hướng dẫn Cấp cứu - Hồi sức Bộ Y tế (105 Câu & 8 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.3.1)",
   "storageNamespace": "hmu_s36_gmhs_hscc_v210",
   "defaultExamCount": 45,
   "defaultExamMinutes": 35,

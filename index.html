@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Hệ Thống Ôn Tập Y Khoa Đa Học Phần ĐHYHN (Y1–Y6) — 16 Học Phần (2627 Câu Hỏi) | Phiên bản 2.3.0 — Copyright © 2026 CorruptedP</title>
+  <title>Hệ Thống Ôn Tập Y Khoa Đa Học Phần ĐHYHN (Y1–Y6) — 18 Học Phần (3327 Câu Hỏi) | Phiên bản 2.3.1 — Copyright © 2026 CorruptedP</title>
   <meta name="description" content="Ôn tập các Module YHN - By CrptedP" />
   <meta name="theme-color" content="#0f766e" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,7 +51,7 @@
             <div class="text-sm font-extrabold text-slate-900 tracking-tight truncate">Ôn tập ĐHYHN</div>
             <div class="flex items-center gap-1.5 mt-0.5">
               <span class="text-[11px] text-slate-500 truncate">Đa Học Phần Y1–Y6</span>
-              <span class="px-1.5 py-0 rounded bg-teal-50 border border-teal-200 text-teal-800 text-[10px] font-bold font-mono shrink-0">v2.3.0</span>
+              <span class="px-1.5 py-0 rounded bg-teal-50 border border-teal-200 text-teal-800 text-[10px] font-bold font-mono shrink-0">v2.3.1</span>
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@
 
       <!-- Course Hub Quick Trigger -->
       <div class="px-3 pt-3 pb-2 shrink-0">
-        <button type="button" onclick="closeMobileNavDrawer(); openCourseHubModal()" class="sidebar-course-trigger w-full px-3 py-2.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold shadow-xs transition flex items-center justify-between gap-2" title="Mở Cổng chọn 16 Học phần (Phím M)">
+        <button type="button" onclick="closeMobileNavDrawer(); openCourseHubModal()" class="sidebar-course-trigger w-full px-3 py-2.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold shadow-xs transition flex items-center justify-between gap-2" title="Mở Cổng chọn 18 Học phần (Phím M)">
           <span class="flex items-center gap-2 min-w-0">
             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
             <span class="sidebar-label truncate">Chọn Học Phần (Y1–Y6)</span>
@@ -234,6 +234,8 @@
             </div>
             <div id="topBarCoursesListWrapper" class="flex flex-wrap items-center gap-1.5">
               <button type="button" id="quickCourseBtn-s22_ntmd" data-course-year="Y2" onclick="switchActiveCourse('s22_ntmd')" class="hidden"><span>🦠</span><span>S2.2 NT-MD (429 câu)</span></button>
+              <button type="button" id="quickCourseBtn-s28_than_kinh_hanh_vi" data-course-year="Y3" onclick="switchActiveCourse('s28_than_kinh_hanh_vi')" class="hidden"><span>🧠</span><span>S2.8 Thần kinh - Hành vi (412 câu)</span></button>
+              <button type="button" id="quickCourseBtn-s211_sinh_duc_sinh_san" data-course-year="Y3" onclick="switchActiveCourse('s211_sinh_duc_sinh_san')" class="hidden"><span>🤰</span><span>S2.11 Sinh dục - Sinh sản (288 câu)</span></button>
               <button type="button" id="quickCourseBtn-s310_truyen_nhiem" data-course-year="Y5" onclick="switchActiveCourse('s310_truyen_nhiem')" class="hidden"><span>🏥</span><span>S3.10 Truyền nhiễm (275 câu)</span></button>
               <button type="button" id="quickCourseBtn-s37_s38_ung_thu" data-course-year="Y5" onclick="switchActiveCourse('s37_s38_ung_thu')" class="hidden"><span>🎗️</span><span>S3.7 Ung thư (344 câu)</span></button>
               <button type="button" id="quickCourseBtn-nckh3_y5" data-course-year="Y5" onclick="switchActiveCourse('nckh3_y5')" class="hidden"><span>🔬</span><span>NCKH3 Y học (96 câu)</span></button>
@@ -1389,10 +1391,10 @@ const DEFAULT_SUBJECT_CONFIG = {
           <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
             <span class="font-bold text-slate-700">Copyright © 2026 CorruptedP</span>
             <span class="text-slate-300">•</span>
-            <span class="px-2 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 font-bold text-[11px] font-mono">Phiên bản 2.3.0</span>
+            <span class="px-2 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 font-bold text-[11px] font-mono">Phiên bản 2.3.1</span>
           </div>
           <div class="text-[11px] text-slate-400 text-center sm:text-right">
-            Hệ Thống Ôn Tập Y Khoa Đa Học Phần ĐHYHN (Y1–Y6) • 16 Học phần (2.627 câu hỏi)
+            Hệ Thống Ôn Tập Y Khoa Đa Học Phần ĐHYHN (Y1–Y6) • 18 Học phần (3.327 câu hỏi)
           </div>
         </div>
       </footer>
@@ -1772,7 +1774,7 @@ function doGet(e) {
           <div class="min-w-0">
             <div class="flex items-center gap-1.5 flex-wrap">
               <span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-teal-500/25 text-teal-200 border border-teal-400/30">Y1 – Y6</span>
-              <span class="px-2 py-0.5 rounded-md text-[10px] font-bold font-mono bg-white/10 text-slate-200">Phiên bản 2.3.0</span>
+              <span class="px-2 py-0.5 rounded-md text-[10px] font-bold font-mono bg-white/10 text-slate-200">Phiên bản 2.3.1</span>
             </div>
             <h2 class="text-sm sm:text-base font-extrabold tracking-tight mt-0.5 truncate">Chọn học phần cần ôn luyện</h2>
           </div>
@@ -1785,7 +1787,7 @@ function doGet(e) {
         <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5" id="courseHubYearTabs">
           <button type="button" onclick="renderCourseHubCards('Y1')" data-year="Y1" class="hub-year-tab px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap">Y1</button>
           <button type="button" onclick="renderCourseHubCards('Y2')" data-year="Y2" class="hub-year-tab px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap">Y2 (1)</button>
-          <button type="button" onclick="renderCourseHubCards('Y3')" data-year="Y3" class="hub-year-tab px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap">Y3</button>
+          <button type="button" onclick="renderCourseHubCards('Y3')" data-year="Y3" class="hub-year-tab px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap">Y3 (2)</button>
           <button type="button" onclick="renderCourseHubCards('Y4')" data-year="Y4" class="hub-year-tab px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap">Y4</button>
           <button type="button" onclick="renderCourseHubCards('Y5')" data-year="Y5" class="hub-year-tab px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap">Y5 (15)</button>
           <button type="button" onclick="renderCourseHubCards('Y6')" data-year="Y6" class="hub-year-tab px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap">Y6</button>
@@ -1805,7 +1807,7 @@ function doGet(e) {
           <span>Hiện khi mở web</span>
         </label>
         <div class="flex items-center gap-2 ml-auto">
-          <span class="hidden md:inline text-[11px] font-semibold text-slate-400">Phiên bản 2.3.0 • © 2026 CorruptedP</span>
+          <span class="hidden md:inline text-[11px] font-semibold text-slate-400">Phiên bản 2.3.1 • © 2026 CorruptedP</span>
           <button type="button" onclick="openSubjectConfigModal()" class="hidden sm:inline-flex px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold text-xs">⚙️ Tùy chỉnh</button>
           <button type="button" onclick="closeCourseHubModal()" class="px-3.5 py-1.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs">Tiếp tục ôn →</button>
         </div>
@@ -1813,9 +1815,11 @@ function doGet(e) {
     </div>
   </div>
 
-  <!-- Course Data Registry & 16 Modules -->
+  <!-- Course Data Registry & 18 Modules -->
   <script src="data/courses-init.js"></script>
   <script src="data/courses/s22_ntmd.js"></script>
+  <script src="data/courses/s28_than_kinh_hanh_vi.js"></script>
+  <script src="data/courses/s211_sinh_duc_sinh_san.js"></script>
   <script src="data/courses/s310_truyen_nhiem.js"></script>
   <script src="data/courses/s37_s38_ung_thu.js"></script>
   <script src="data/courses/nckh3_y5.js"></script>

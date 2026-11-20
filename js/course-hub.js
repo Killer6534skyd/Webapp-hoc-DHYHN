@@ -178,7 +178,7 @@ function updateTopBarYearDrawerUI() {
       yBtn.className = 'year-pill-btn px-2.5 py-1 rounded-lg text-xs font-extrabold transition whitespace-nowrap bg-teal-700 text-white shadow-xs';
     } else if (isCourseYear) {
       yBtn.className = 'year-pill-btn px-2.5 py-1 rounded-lg text-xs font-extrabold transition whitespace-nowrap bg-teal-50 text-teal-800 border border-teal-300';
-    } else if (yr === 'Y2' || yr === 'Y5') {
+    } else if (yr === 'Y2' || yr === 'Y3' || yr === 'Y5') {
       yBtn.className = 'year-pill-btn px-2.5 py-1 rounded-lg text-xs font-bold transition whitespace-nowrap bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200';
     } else {
       yBtn.className = 'year-pill-btn px-2.5 py-1 rounded-lg text-xs font-semibold transition whitespace-nowrap text-slate-500 hover:bg-slate-100 hover:text-slate-800';
@@ -399,7 +399,7 @@ function renderCourseHubCards(filterYear) {
     const yr = btn.getAttribute('data-year');
     if (yr === currentHubFilterYear) {
       btn.className = 'hub-year-tab px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-extrabold transition whitespace-nowrap bg-teal-700 text-white shadow-xs';
-    } else if (yr === 'Y2' || yr === 'Y5') {
+    } else if (yr === 'Y2' || yr === 'Y3' || yr === 'Y5') {
       btn.className = 'hub-year-tab px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-bold transition whitespace-nowrap bg-white hover:bg-teal-50 text-slate-800 border border-slate-200 hover:border-teal-300';
     } else {
       btn.className = 'hub-year-tab px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold transition whitespace-nowrap bg-white hover:bg-slate-100 text-slate-500 border border-slate-200';
@@ -417,9 +417,10 @@ function renderCourseHubCards(filterYear) {
       '<div class="col-span-full bg-white rounded-2xl border border-dashed border-slate-300 p-6 text-center space-y-2.5">' +
         '<div class="text-2xl">📂</div>' +
         '<h3 class="text-sm sm:text-base font-extrabold text-slate-900">Năm học ' + escapeHtml(currentHubFilterYear) + ' hiện chưa có học phần mặc định</h3>' +
-        '<p class="text-xs text-slate-500 max-w-md mx-auto">Các học phần có sẵn nằm ở <strong>Năm Y2 (1 môn)</strong> và <strong>Năm Y5 (15 môn)</strong>. Bạn có thể chuyển nhanh hoặc tạo học phần mới.</p>' +
+        '<p class="text-xs text-slate-500 max-w-md mx-auto">Các học phần có sẵn nằm ở <strong>Năm Y2 (1 môn)</strong>, <strong>Năm Y3 (2 môn)</strong> và <strong>Năm Y5 (15 môn)</strong>. Bạn có thể chuyển nhanh hoặc tạo học phần mới.</p>' +
         '<div class="flex flex-wrap items-center justify-center gap-2 pt-1">' +
           '<button type="button" onclick="renderCourseHubCards(\'Y2\')" class="px-3.5 py-1.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold">Mở Năm Y2 (1 môn)</button>' +
+          '<button type="button" onclick="renderCourseHubCards(\'Y3\')" class="px-3.5 py-1.5 rounded-xl bg-sky-700 hover:bg-sky-800 text-white text-xs font-bold">Mở Năm Y3 (2 môn)</button>' +
           '<button type="button" onclick="renderCourseHubCards(\'Y5\')" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold">Mở Năm Y5 (15 môn)</button>' +
           '<button type="button" data-year="' + escapeHtml(currentHubFilterYear) + '" onclick="openCreateCustomCourseModal(this.dataset.year)" class="px-3.5 py-1.5 rounded-xl border border-teal-300 bg-teal-50 hover:bg-teal-100 text-teal-900 text-xs font-bold">➕ Tạo học phần ' + escapeHtml(currentHubFilterYear) + '</button>' +
         '</div>' +

@@ -200,7 +200,7 @@ function openKeyboardShortcutsHelpModal() {
   const footerEl = document.getElementById('customDataModalFooter');
   if (!modal || !titleEl || !bodyEl || !footerEl) return;
 
-  titleEl.textContent = '⌨️ Bảng Phím Tắt Nhanh (Phiên bản 2.3.0)';
+  titleEl.textContent = '⌨️ Bảng Phím Tắt Nhanh (Phiên bản 2.3.1)';
   bodyEl.innerHTML = '<div class="space-y-4 text-xs">' +
     '<div class="p-3 rounded-xl bg-teal-50 border border-teal-200 text-teal-950">' +
       'Sử dụng phím tắt trên bàn phím máy tính giúp tăng tốc độ làm đề, lật Flashcard và tra cứu câu hỏi. Nhấn <kbd class="px-1.5 py-0.5 rounded bg-white border border-teal-300 font-mono font-bold">?</kbd> bất kỳ lúc nào để mở bảng này.' +
@@ -240,7 +240,7 @@ function openKeyboardShortcutsHelpModal() {
         '<div class="font-extrabold text-teal-900 text-sm">🌐 Điều hướng Toàn cục</div>' +
         '<ul class="space-y-1.5 text-slate-700">' +
           '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">Alt + 1..7</kbd>: Chuyển nhanh giữa 7 Tab chức năng</li>' +
-          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">M</kbd>: Mở Cổng chọn 16 Học phần (Y1–Y6)</li>' +
+          '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">M</kbd>: Mở Cổng chọn 18 Học phần (Y1–Y6)</li>' +
           '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">?</kbd>: Mở bảng hướng dẫn phím tắt này</li>' +
           '<li><kbd class="px-1.5 py-0.5 rounded bg-white border font-mono font-bold">Esc</kbd>: Đóng hộp thoại / ngăn chọn đang mở</li>' +
         '</ul>' +

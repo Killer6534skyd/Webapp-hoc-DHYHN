@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s311_csskbd'] = {
   "icon": "🏡",
   "shortName": "YHGĐ & CSSK Ban đầu (S3.11)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Y Học Gia Đình & Chăm Sóc Sức Khỏe Ban Đầu (S3.11 - Năm Y5)",
-  "subtitle": "Giáo trình Y học Gia đình & Chăm sóc Sức khỏe Ban đầu - Đại học Y Hà Nội & Thông tư 21/2019/TT-BYT (197 Câu & 14 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.3.0)",
+  "subtitle": "Giáo trình Y học Gia đình & Chăm sóc Sức khỏe Ban đầu - Đại học Y Hà Nội & Thông tư 21/2019/TT-BYT (197 Câu & 14 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.3.1)",
   "storageNamespace": "hmu_s311_csskbd_v210",
   "defaultExamCount": 50,
   "defaultExamMinutes": 35,

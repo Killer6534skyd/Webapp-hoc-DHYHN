@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s312_1_phcn'] = {
   "icon": "♿",
   "shortName": "Phục hồi Chức năng (S3.12.1)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Phục Hồi Chức Năng (S3.12.1 - Năm Y5)",
-  "subtitle": "Giáo trình Phục hồi chức năng - Đại học Y Hà Nội & Hướng dẫn Quy trình Kỹ thuật PHCN Bộ Y tế (QĐ 54/QĐ-BYT) (121 Câu & 14 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.3.0)",
+  "subtitle": "Giáo trình Phục hồi chức năng - Đại học Y Hà Nội & Hướng dẫn Quy trình Kỹ thuật PHCN Bộ Y tế (QĐ 54/QĐ-BYT) (121 Câu & 14 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.3.1)",
   "storageNamespace": "hmu_s312_1_phcn_v210",
   "defaultExamCount": 40,
   "defaultExamMinutes": 30,

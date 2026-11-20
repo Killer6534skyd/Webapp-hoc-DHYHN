@@ -1,7 +1,7 @@
 {
   "name": "webapp-hoc-dhyhn",
-  "version": "2.3.0",
-  "description": "Hệ Thống Ôn Tập & Thi Thử Y Khoa Đa Học Phần ĐHYHN (Y1–Y6) — 16 Học Phần (2.627 Câu Hỏi)",
+  "version": "2.3.1",
+  "description": "Hệ Thống Ôn Tập & Thi Thử Y Khoa Đa Học Phần ĐHYHN (Y1–Y6) — 18 Học Phần (3.327 Câu Hỏi)",
   "private": true,
   "scripts": {
     "start": "python3 -m http.server 8080",

@@ -2,6 +2,24 @@
 
 Tất cả những thay đổi đáng chú ý của dự án **Hệ Thống Ôn Tập Y Khoa Đa Học Phần ĐHYHN (Y1–Y6)** sẽ được ghi nhận tại đây.
 
+## [v2.3.1] - 2026-11-20
+
+### 📚 Bổ sung 2 Học phần mới thuộc Năm Y3 (+700 Câu hỏi & 40 Case Thân chung)
+- **Module S2.8 — Thần kinh - Hành vi (Năm Y3):**
+  - Tích hợp trọn vẹn **412 câu hỏi** & **12 Case lâm sàng thân chung** (`data/courses/s28_than_kinh_hanh_vi.js`) từ 7 bộ đề review chuẩn hóa: *ISSR K119 (70 câu)*, *RV Phân hiệu (67 câu)*, *K117 Đội Máu (50 câu)*, *K118 Đội Máu (61 câu)*, *RV SVTN (97 câu)*, *IRAT TBL1 YK3 (10 câu)* và *ISSR K117 (57 câu)*.
+  - Phân loại theo 7 chuyên ngành: Giải phẫu Thần kinh, Sinh lý Thần kinh, Mô học & Phôi thai Thần kinh, Dược lý Thần kinh, Vi sinh - Ký sinh trùng & Hóa sinh TK, Tâm lý - Hành vi & Di truyền TK, và Chẩn đoán hình ảnh & Lâm sàng TK.
+- **Module S2.11 — Sinh dục - Sinh sản (Năm Y3):**
+  - Tích hợp trọn vẹn **288 câu hỏi** & **28 Case lâm sàng thân chung** (`data/courses/s211_sinh_duc_sinh_san.js`) từ 6 bộ đề review chuẩn hóa: *K117 Tổng hợp 5 file (52 câu)*, *ISSR K118 (42 câu)*, *RV ĐMPH (51 câu)*, *RV Sinh dục Word (31 câu)*, *RV SVTN (52 câu)* và *RV Đội Máu (60 câu)*.
+  - Phân loại theo 7 chuyên ngành: Giải phẫu Sinh dục, Mô học & Phôi thai Sinh dục, Sinh lý Sinh dục - Nội tiết, Sinh lý - Nam khoa & CĐHA, Dược lý & Biện pháp tránh thai, Giải phẫu bệnh & Sản phụ khoa, và Di truyền & Sàng lọc trước sinh.
+
+### 🔄 Chuẩn hóa Dữ liệu & Nâng cấp Hệ thống
+- Tự động tách các câu hỏi ghép nhiều tiểu câu thành **chùm câu hỏi thân chung (`clusters`)** có khung tình huống lâm sàng rõ ràng, giữ nguyên đầy đủ phần giải thích đáp án đúng, phân tích các phương án nhiễu và ghi chú hiệu đính/câu bẫy theo Giáo trình ĐHYHN.
+- Cập nhật **Cổng chọn Học phần (`#courseHubModal`)** và **Thanh chuyển môn nhanh theo năm (`Y1`–`Y6`)** hiển thị nổi bật nhóm **Năm Y3 (2 môn)**; nâng tổng ngân hàng toàn hệ thống lên **18 học phần / 3.327 câu hỏi**.
+- Đồng bộ phiên bản **2.3.1** trên toàn bộ giao diện, `package.json`, `sw.js`, `README.md`, `validate-project.js` và các tệp học phần.
+- Bảo toàn **100% tương thích ngược** dữ liệu tiến độ, đa Profile và sao lưu JSON của các phiên bản trước.
+
+---
+
 ## [v2.3.0] - 2026-11-19
 
 ### 🎨 Thiết kế lại Toàn bộ Giao diện (Modern Clinical Editorial UI)

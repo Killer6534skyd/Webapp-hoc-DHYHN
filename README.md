@@ -1,6 +1,6 @@
 # Hệ Thống Ôn Tập Y Khoa Đa Học Phần ĐHYHN (Y1–Y6)
 
-Project này được tách và chuẩn hóa từ file đơn lẻ `2.1.1.html` (~7.5 MB) thành cấu trúc thư mục mô-đun để dễ quản lý, chỉnh sửa câu hỏi từng môn, kiểm tra lỗi tự động và triển khai lên GitHub Pages / Vercel (hiện tại là **Phiên bản 2.3.0** — xem chi tiết tại [CHANGELOG.md](CHANGELOG.md)).
+Project này được tách và chuẩn hóa từ file đơn lẻ `2.1.1.html` (~7.5 MB) thành cấu trúc thư mục mô-đun để dễ quản lý, chỉnh sửa câu hỏi từng môn, kiểm tra lỗi tự động và triển khai lên GitHub Pages / Vercel (hiện tại là **Phiên bản 2.3.1** — xem chi tiết tại [CHANGELOG.md](CHANGELOG.md)).
 
 Dùng thử tại:
 - **Vercel:** https://tewnpuck.vercel.app/
@@ -21,8 +21,10 @@ webapp-hoc-dhyhn/
 ├── data/
 │   ├── courses-init.js               # Khởi tạo COURSE_BANKS_DATA
 │   ├── courses-bootstrap.js          # Nạp khóa học tự tạo từ localStorage & hydrate dữ liệu
-│   └── courses/                      # 16 file dữ liệu riêng biệt (đã format dễ đọc & dễ diff)
+│   └── courses/                      # 18 file dữ liệu riêng biệt (Y2, Y3, Y5)
 │       ├── s22_ntmd.js
+│       ├── s28_than_kinh_hanh_vi.js
+│       ├── s211_sinh_duc_sinh_san.js
 │       ├── s310_truyen_nhiem.js
 │       ├── s37_s38_ung_thu.js
 │       └── ... (13 học phần khác)
@@ -38,7 +40,7 @@ webapp-hoc-dhyhn/
 │   ├── course-hub.js                 # Quản lý danh sách học phần, đổi môn, tạo môn mới, prompt AI
 │   └── init.js                       # Khởi chạy ứng dụng khi tải trang (DOMContentLoaded)
 └── scripts/
-    ├── validate-project.js           # Kiểm tra cú pháp JS & tính toàn vẹn 16 học phần (2.627 câu)
+    ├── validate-project.js           # Kiểm tra cú pháp JS & tính toàn vẹn 18 học phần (3.327 câu)
     └── build-single-html.py          # Đóng gói lại thành 1 file HTML duy nhất trong dist/
 ```
 
@@ -51,7 +53,7 @@ webapp-hoc-dhyhn/
   ```
   Sau đó mở trình duyệt tại `http://localhost:8080`.
 
-- **Kiểm tra lỗi cú pháp & dữ liệu toàn bộ 16 học phần:**
+- **Kiểm tra lỗi cú pháp & dữ liệu toàn bộ 18 học phần:**
   ```bash
   npm run check
   ```

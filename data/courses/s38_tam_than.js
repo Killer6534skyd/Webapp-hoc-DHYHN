@@ -10,7 +10,7 @@ COURSE_BANKS_DATA['s38_tam_than'] = {
   "icon": "🧠",
   "shortName": "Tâm thần học (S3.8 & K120)",
   "subjectName": "Hệ Thống Ôn Tập & Thi Thử Tâm Thần Học (S3.8 Y5 Mới & Review YK1 K120)",
-  "subtitle": "Giáo trình Tâm thần học - Đại học Y Hà Nội, Tiêu chuẩn ICD-10 / DSM-5 & Hướng dẫn Bộ Y tế (QĐ 2058/QĐ-BYT) (140 Câu & 19 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.3.0)",
+  "subtitle": "Giáo trình Tâm thần học - Đại học Y Hà Nội, Tiêu chuẩn ICD-10 / DSM-5 & Hướng dẫn Bộ Y tế (QĐ 2058/QĐ-BYT) (140 Câu & 19 Case Lâm Sàng Chuẩn Hóa ĐHYHN - Phiên bản 2.3.1)",
   "storageNamespace": "hmu_s38_tam_than_v210",
   "defaultExamCount": 40,
   "defaultExamMinutes": 30,
